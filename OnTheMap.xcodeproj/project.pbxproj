@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C47E12EE23DA9FB00044EC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */; };
 		C47E12F023DA9FB00044EC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */; };
-		C47E12F223DA9FB00044EC42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12F123DA9FB00044EC42 /* ViewController.swift */; };
+		C47E12F223DA9FB00044EC42 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12F123DA9FB00044EC42 /* MapViewController.swift */; };
 		C47E12F523DA9FB00044EC42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47E12F323DA9FB00044EC42 /* Main.storyboard */; };
 		C47E12F723DA9FB20044EC42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C47E12F623DA9FB20044EC42 /* Assets.xcassets */; };
 		C47E12FA23DA9FB20044EC42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C47E12F823DA9FB20044EC42 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		C47E12EA23DA9FB00044EC42 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C47E12F123DA9FB00044EC42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C47E12F123DA9FB00044EC42 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C47E12F423DA9FB00044EC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C47E12F623DA9FB20044EC42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C47E12F923DA9FB20044EC42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -99,11 +99,11 @@
 		C47E12EC23DA9FB00044EC42 /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				C47E131F23DAA4D30044EC42 /* Model */,
 				C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */,
 				C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */,
-				C47E12F123DA9FB00044EC42 /* ViewController.swift */,
-				C47E12F323DA9FB00044EC42 /* Main.storyboard */,
-				C47E12F623DA9FB20044EC42 /* Assets.xcassets */,
+				C47E131D23DAA08A0044EC42 /* Controller */,
+				C47E131E23DAA0B00044EC42 /* View */,
 				C47E12F823DA9FB20044EC42 /* LaunchScreen.storyboard */,
 				C47E12FB23DA9FB20044EC42 /* Info.plist */,
 			);
@@ -126,6 +126,30 @@
 				C47E131123DA9FB20044EC42 /* Info.plist */,
 			);
 			path = OnTheMapUITests;
+			sourceTree = "<group>";
+		};
+		C47E131D23DAA08A0044EC42 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C47E12F123DA9FB00044EC42 /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C47E131E23DAA0B00044EC42 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C47E12F323DA9FB00044EC42 /* Main.storyboard */,
+				C47E12F623DA9FB20044EC42 /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C47E131F23DAA4D30044EC42 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C47E12F223DA9FB00044EC42 /* ViewController.swift in Sources */,
+				C47E12F223DA9FB00044EC42 /* MapViewController.swift in Sources */,
 				C47E12EE23DA9FB00044EC42 /* AppDelegate.swift in Sources */,
 				C47E12F023DA9FB00044EC42 /* SceneDelegate.swift in Sources */,
 			);
