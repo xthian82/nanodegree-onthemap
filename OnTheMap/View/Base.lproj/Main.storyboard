@@ -59,7 +59,7 @@
             </objects>
             <point key="canvasLocation" x="-843" y="-164"/>
         </scene>
-        <!--Map View Controller-->
+        <!--On the Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -80,13 +80,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="FPZ-W8-Yma">
-                        <barButtonItem key="leftBarButtonItem" image="icon_pin" id="E4w-Cg-cwA"/>
-                        <barButtonItem key="rightBarButtonItem" image="icon_refresh" id="aOM-TT-b3E">
+                    <navigationItem key="navigationItem" title="On the Map" id="FPZ-W8-Yma">
+                        <barButtonItem key="leftBarButtonItem" image="exit_logout" id="eLE-Tj-wEn">
                             <connections>
-                                <action selector="reloadMap" destination="BYZ-38-t0r" id="yQS-qk-XeR"/>
+                                <action selector="logoutTapped:" destination="BYZ-38-t0r" id="Cf9-PS-f3b"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_refresh" id="aOM-TT-b3E">
+                                <connections>
+                                    <action selector="reloadMap" destination="BYZ-38-t0r" id="yQS-qk-XeR"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="icon_pin" id="E4w-Cg-cwA"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="8lu-Vv-nPe" id="JxX-0N-WtH"/>
@@ -96,7 +103,7 @@
             </objects>
             <point key="canvasLocation" x="-26" y="-164"/>
         </scene>
-        <!--Table View Controller-->
+        <!--On the Map-->
         <scene sceneID="aH4-Ke-9xS">
             <objects>
                 <tableViewController id="mBM-iZ-gGi" customClass="TableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
@@ -119,7 +126,17 @@
                             <outlet property="delegate" destination="mBM-iZ-gGi" id="mVj-T2-5Sb"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="emW-Py-Mlp"/>
+                    <navigationItem key="navigationItem" title="On the Map" id="emW-Py-Mlp">
+                        <barButtonItem key="leftBarButtonItem" image="exit_logout" id="Pva-ps-G6Y">
+                            <connections>
+                                <action selector="logoutTapped:" destination="mBM-iZ-gGi" id="xwN-QF-la7"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem image="icon_refresh" id="gVx-jO-8jl"/>
+                            <barButtonItem image="icon_pin" id="G70-9h-5JM"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6M2-6T-axx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -127,6 +144,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="exit_logout" width="32" height="32"/>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_mapview-deselected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>

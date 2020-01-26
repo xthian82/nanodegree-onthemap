@@ -35,12 +35,13 @@
 		C47E134823DDED3E0044EC42 /* HttpMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E134723DDED3E0044EC42 /* HttpMethodType.swift */; };
 		C47E134A23DDEE360044EC42 /* HttpKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E134923DDEE360044EC42 /* HttpKeys.swift */; };
 		C47E134E23DDF4690044EC42 /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E134D23DDF4690044EC42 /* StudentLocations.swift */; };
-		C47E135023DDF4CD0044EC42 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E134F23DDF4CD0044EC42 /* StudentLocation.swift */; };
+		C47E135023DDF4CD0044EC42 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E134F23DDF4CD0044EC42 /* StudentInformation.swift */; };
 		C47E135223DE02160044EC42 /* StudentLocationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135123DE02160044EC42 /* StudentLocationRequest.swift */; };
 		C47E135423DE02A30044EC42 /* AddStudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135323DE02A30044EC42 /* AddStudentResponse.swift */; };
 		C47E135623DE03310044EC42 /* UpdateStudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135523DE03310044EC42 /* UpdateStudentResponse.swift */; };
 		C47E135823DE25F00044EC42 /* EmptyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135723DE25F00044EC42 /* EmptyBody.swift */; };
 		C47E135B23DE432A0044EC42 /* ControllersUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135A23DE432A0044EC42 /* ControllersUtil.swift */; };
+		C47E135D23DE506B0044EC42 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,12 +96,13 @@
 		C47E134723DDED3E0044EC42 /* HttpMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpMethodType.swift; sourceTree = "<group>"; };
 		C47E134923DDEE360044EC42 /* HttpKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpKeys.swift; sourceTree = "<group>"; };
 		C47E134D23DDF4690044EC42 /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentLocations.swift; path = ../../../../../../../../Users/jerry/Documents/StudentLocations.swift; sourceTree = "<group>"; };
-		C47E134F23DDF4CD0044EC42 /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentLocation.swift; path = ../../../../../../../../Users/jerry/Documents/StudentLocation.swift; sourceTree = "<group>"; };
+		C47E134F23DDF4CD0044EC42 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StudentInformation.swift; path = ../../../../../../../../Users/jerry/Documents/StudentInformation.swift; sourceTree = "<group>"; };
 		C47E135123DE02160044EC42 /* StudentLocationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocationRequest.swift; sourceTree = "<group>"; };
 		C47E135323DE02A30044EC42 /* AddStudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentResponse.swift; sourceTree = "<group>"; };
 		C47E135523DE03310044EC42 /* UpdateStudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentResponse.swift; sourceTree = "<group>"; };
 		C47E135723DE25F00044EC42 /* EmptyBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBody.swift; sourceTree = "<group>"; };
 		C47E135A23DE432A0044EC42 /* ControllersUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersUtil.swift; sourceTree = "<group>"; };
+		C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				C47E12F123DA9FB00044EC42 /* MapViewController.swift */,
 				C47E132223DD51A40044EC42 /* TableViewController.swift */,
+				C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,7 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				C47E134D23DDF4690044EC42 /* StudentLocations.swift */,
-				C47E134F23DDF4CD0044EC42 /* StudentLocation.swift */,
+				C47E134F23DDF4CD0044EC42 /* StudentInformation.swift */,
 				C47E135323DE02A30044EC42 /* AddStudentResponse.swift */,
 				C47E135523DE03310044EC42 /* UpdateStudentResponse.swift */,
 			);
@@ -409,7 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C47E135023DDF4CD0044EC42 /* StudentLocation.swift in Sources */,
+				C47E135023DDF4CD0044EC42 /* StudentInformation.swift in Sources */,
 				C47E133623DDD7FA0044EC42 /* UserData.swift in Sources */,
 				C47E12F223DA9FB00044EC42 /* MapViewController.swift in Sources */,
 				C47E132923DD61070044EC42 /* SessionRequest.swift in Sources */,
@@ -427,6 +430,7 @@
 				C47E132B23DD615D0044EC42 /* LoginData.swift in Sources */,
 				C47E133F23DDE1460044EC42 /* Email.swift in Sources */,
 				C47E133D23DDDC3F0044EC42 /* RefKey.swift in Sources */,
+				C47E135D23DE506B0044EC42 /* UIViewController+Extension.swift in Sources */,
 				C47E135423DE02A30044EC42 /* AddStudentResponse.swift in Sources */,
 				C47E135623DE03310044EC42 /* UpdateStudentResponse.swift in Sources */,
 				C47E135223DE02160044EC42 /* StudentLocationRequest.swift in Sources */,

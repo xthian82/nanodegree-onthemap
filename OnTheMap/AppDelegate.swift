@@ -35,9 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Some sample data. This is a dictionary that is more or less similar to the
      // JSON data that you will download from Parse.
      
-     class func hardCodedLocationData() -> [StudentLocation] {
+     class func hardCodedLocationData() -> [StudentInformation] {
          return  [
-            StudentLocation(createdAt: "2015-02-24T22:27:14.456Z",
+            StudentInformation(createdAt: "2015-02-24T22:27:14.456Z",
                             firstName: "Jessica",
                             lastName: "Uelmen",
                             latitude: 28.1461248,
@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             uniqueKey: "872458750",
                             updatedAt: "2015-03-09T22:07:09.593Z"),
             
-            StudentLocation(createdAt: "2015-02-24T22:35:30.639Z",
+            StudentInformation(createdAt: "2015-02-24T22:35:30.639Z",
                             firstName: "Gabrielle",
                             lastName: "Miller-Messner",
                             latitude: 35.1740471,
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             uniqueKey: "2256298598",
                             updatedAt: "2015-03-11T03:23:49.582Z"),
             
-            StudentLocation(createdAt: "2015-02-24T22:30:54.442Z",
+            StudentInformation(createdAt: "2015-02-24T22:30:54.442Z",
                             firstName: "Jason",
                             lastName: "Schatz",
                             latitude: 37.7617,
@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             uniqueKey: "2362758535",
                             updatedAt: "2015-03-10T17:20:31.828Z"),
             
-            StudentLocation(createdAt: "2015-03-11T02:48:18.321Z",
+            StudentInformation(createdAt: "2015-03-11T02:48:18.321Z",
                             firstName: "Jarrod",
                             lastName: "Parkes",
                             latitude: 34.73037,

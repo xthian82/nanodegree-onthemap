@@ -70,7 +70,7 @@ class UdacityClient {
         }
     }
     
-    class func logout(completion: @escaping (Bool, Error?) -> Void) {
+    class func logout(completion: @escaping (Error?) -> Void) {
         let xsrfCookie: HTTPCookie? = HttpUtil.getXsrfCookie()
         var headers: [String: String] = [:]
         if let xsrfCookie = xsrfCookie {
@@ -81,7 +81,7 @@ class UdacityClient {
         HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .DELETE, headers: headers, body: body, responseType: Session.self) { (response, error) in
                             
             guard let _ = response else {
-                completion(false, error)
+                completion(error)
                 return
             }
 
@@ -89,7 +89,7 @@ class UdacityClient {
             Auth.sessionId = ""
             Auth.firstName = ""
             Auth.lastName = ""
-            completion(true, nil)
+            completion(nil)
         }
     }
     
@@ -110,7 +110,7 @@ class UdacityClient {
         }
     }
     
-    class func getStudentLocations(completion: @escaping ([StudentLocation]?, Error?) -> Void) {
+    class func getStudentLocations(completion: @escaping ([StudentInformation]?, Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocations(orderBy: "-updatedAt", limitSize: 100).url,
                                     method: .GET, headers: nil, body: body, responseType: StudentLocations.self) { (response, error) in
@@ -123,7 +123,7 @@ class UdacityClient {
         }
     }
     
-    class func getStudentLocationById(completion: @escaping ([StudentLocation]?, Error?) -> Void) {
+    class func getStudentLocationById(completion: @escaping ([StudentInformation]?, Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocation(userId: Auth.accountId).url,
                                     method: .GET, headers: nil, body: body,

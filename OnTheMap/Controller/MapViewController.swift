@@ -15,7 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     var annotations = [MKPointAnnotation]()
     
-    var locations: [StudentLocation] {
+    var locations: [StudentInformation] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations
     }
@@ -24,8 +24,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for dict in locations {
-            annotations.append(getAnnotationFromDictionary(dict))
+        for location in locations {
+            annotations.append(getAnnotationFromInformation(location))
         }
         self.mapView.delegate = self
         self.mapView.addAnnotations(annotations)
@@ -58,7 +58,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 UIApplication.shared.open(URL(string: toOpen)!, options: [:]) { (success) in
                     if !success {
                         let alert = ControllersUtil.getDefaultFailureUI(title: "Wrong Url!", message: "Cannot open the url provided")
-                        //self.show(alert, sender: nil)
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
@@ -67,7 +66,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     // MARK: Helper method
-    func getAnnotationFromDictionary(_ studentLocation: StudentLocation) -> MKPointAnnotation {
+    func getAnnotationFromInformation(_ studentLocation: StudentInformation) -> MKPointAnnotation {
         
         // The lat and long are used to create a CLLocationCoordinates2D instance.
         let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(studentLocation.latitude),
