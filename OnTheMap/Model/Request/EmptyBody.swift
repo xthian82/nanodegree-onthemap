@@ -1,5 +1,5 @@
 //
-//  Keys.swift
+//  EmptyBody.swift
 //  OnTheMap
 //
 //  Created by Cristhian Recalde on 1/26/20.
@@ -8,8 +8,6 @@
 
 import Foundation
 
-public struct Keys {
-
-    static let pinId = "pin"
-    static let locationDetail = "locationDetail"
+struct EmptyBody: Codable {
+    
 }

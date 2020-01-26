@@ -11,7 +11,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var locations: [[String: Any]] {
+    var locations: [StudentLocation] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations
     }
@@ -34,7 +34,7 @@ class TableViewController: UITableViewController {
         let locationDetail = self.locations[indexPath.row]
            
         // Set the name and image
-        cell.textLabel?.text = "\(locationDetail[Keys.firstName] ?? "") \(locationDetail[Keys.lastName] ?? "")"
+        cell.textLabel?.text = "\(locationDetail.firstName) \(locationDetail.lastName)"
         cell.imageView?.image = UIImage(named: "icon_pin")
            
         return cell
@@ -42,7 +42,7 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let locationDetail = self.locations[indexPath.row]
-        let toOpen = "\(locationDetail[Keys.mediaURL] ?? "")" as String
+        let toOpen = "\(locationDetail.mediaURL)" as String
         
         if toOpen.count > 0 {
             UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)

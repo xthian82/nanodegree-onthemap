@@ -15,7 +15,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     var annotations = [MKPointAnnotation]()
     
-    var locations: [[String: Any]] {
+    var locations: [StudentLocation] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations
     }
@@ -23,8 +23,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     //MARK: View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //let locations = hardCodedLocationData()
         
         for dict in locations {
             annotations.append(getAnnotationFromDictionary(dict))
@@ -59,21 +57,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     // MARK: - Sample Data
-    func getAnnotationFromDictionary(_ dictionary: [String: Any]) -> MKPointAnnotation {
+    func getAnnotationFromDictionary(_ studentLocation: StudentLocation) -> MKPointAnnotation {
         
         // The lat and long are used to create a CLLocationCoordinates2D instance.
-        let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(dictionary[Keys.latitude] as! Double),
-                                                longitude: CLLocationDegrees(dictionary[Keys.longitude] as! Double))
+        let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(studentLocation.latitude),
+                                                longitude: CLLocationDegrees(studentLocation.longitude))
         
         // Here we create the annotation and set its coordiate, title, and subtitle properties
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        annotation.title = "\(dictionary[Keys.firstName] ?? "") \(dictionary[Keys.lastName] ?? "")"
-        annotation.subtitle = "\(dictionary[Keys.mediaURL] ?? "")"
+        annotation.title = "\(studentLocation.firstName) \(studentLocation.lastName)"
+        annotation.subtitle = "\(studentLocation.mediaURL)"
         
         return annotation
     }
-    
- 
 }
 
