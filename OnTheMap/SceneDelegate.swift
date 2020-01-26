@@ -48,6 +48,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        
+        if components?.scheme == "themoviemanager" && components?.path == "authenticate" {
+            let loginVC = window?.rootViewController as! UIViewController //LoginViewController
+            
+            //TMDBClient.getNewSession(completion: loginVC.handleSessionResponse(success:error:))
+        }
+        
+        return true
+    }
 
 }
 
