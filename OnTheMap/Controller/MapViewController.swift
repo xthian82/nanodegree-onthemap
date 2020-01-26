@@ -55,7 +55,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             if let toOpen = view.annotation?.subtitle! {
-                UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
+                UIApplication.shared.open(URL(string: toOpen)!, options: [:]) { (success) in
+                    if !success {
+                        let alert = ControllersUtil.getDefaultFailureUI(title: "Wrong Url!", message: "Cannot open the url provided")
+                        //self.show(alert, sender: nil)
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
             }
         }
     }

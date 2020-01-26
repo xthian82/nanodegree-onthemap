@@ -43,11 +43,12 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let locationDetail = self.locations[indexPath.row]
         let toOpen = "\(locationDetail.mediaURL)" as String
-        
-        if toOpen.count > 0 {
-            UIApplication.shared.open(URL(string: toOpen)!, options: [:], completionHandler: nil)
-        } else {
-            print("NO URL FOUND")
+
+        UIApplication.shared.open(URL(string: toOpen)!, options: [:]) { (success) in
+            if !success {
+                let alert = ControllersUtil.getDefaultFailureUI(title: "Wrong Url!", message: "Cannot open the url provided")
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

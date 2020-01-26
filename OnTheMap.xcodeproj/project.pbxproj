@@ -40,6 +40,7 @@
 		C47E135423DE02A30044EC42 /* AddStudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135323DE02A30044EC42 /* AddStudentResponse.swift */; };
 		C47E135623DE03310044EC42 /* UpdateStudentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135523DE03310044EC42 /* UpdateStudentResponse.swift */; };
 		C47E135823DE25F00044EC42 /* EmptyBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135723DE25F00044EC42 /* EmptyBody.swift */; };
+		C47E135B23DE432A0044EC42 /* ControllersUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135A23DE432A0044EC42 /* ControllersUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		C47E135323DE02A30044EC42 /* AddStudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentResponse.swift; sourceTree = "<group>"; };
 		C47E135523DE03310044EC42 /* UpdateStudentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStudentResponse.swift; sourceTree = "<group>"; };
 		C47E135723DE25F00044EC42 /* EmptyBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyBody.swift; sourceTree = "<group>"; };
+		C47E135A23DE432A0044EC42 /* ControllersUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				C47E134523DDEC7F0044EC42 /* HttpUtil.swift */,
 				C47E134723DDED3E0044EC42 /* HttpMethodType.swift */,
 				C47E134923DDEE360044EC42 /* HttpKeys.swift */,
+				C47E135A23DE432A0044EC42 /* ControllersUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				C47E132323DD51A40044EC42 /* TableViewController.swift in Sources */,
 				C47E134E23DDF4690044EC42 /* StudentLocations.swift in Sources */,
 				C47E134823DDED3E0044EC42 /* HttpMethodType.swift in Sources */,
+				C47E135B23DE432A0044EC42 /* ControllersUtil.swift in Sources */,
 				C47E12F023DA9FB00044EC42 /* SceneDelegate.swift in Sources */,
 				C47E133B23DDDB8D0044EC42 /* Permission.swift in Sources */,
 				C47E134A23DDEE360044EC42 /* HttpKeys.swift in Sources */,
