@@ -31,6 +31,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.addAnnotations(annotations)
     }
     
+    @IBAction func reloadMap() {
+        self.mapView.reloadInputViews()
+    }
+    
     //MARK: Map Actions
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: Keys.pinId) as? MKPinAnnotationView
@@ -56,7 +60,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
 
-    // MARK: - Sample Data
+    // MARK: Helper method
     func getAnnotationFromDictionary(_ studentLocation: StudentLocation) -> MKPointAnnotation {
         
         // The lat and long are used to create a CLLocationCoordinates2D instance.

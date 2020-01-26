@@ -82,7 +82,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="FPZ-W8-Yma">
                         <barButtonItem key="leftBarButtonItem" image="icon_pin" id="E4w-Cg-cwA"/>
-                        <barButtonItem key="rightBarButtonItem" image="icon_refresh" id="aOM-TT-b3E"/>
+                        <barButtonItem key="rightBarButtonItem" image="icon_refresh" id="aOM-TT-b3E">
+                            <connections>
+                                <action selector="reloadMap" destination="BYZ-38-t0r" id="yQS-qk-XeR"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="8lu-Vv-nPe" id="JxX-0N-WtH"/>
