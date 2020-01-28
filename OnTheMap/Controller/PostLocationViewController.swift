@@ -14,9 +14,18 @@ class PostLocationViewController: UIViewController {
     @IBOutlet weak var mediaURLTextfield: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
     
+    var location: String?
+    var mediaURL: String?
+    
     //MARK: Window Actions
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        locationTextfield.text = location ?? ""
+        mediaURLTextfield.text = mediaURL ?? ""
     }
     
     //MARK: Action Buttons
@@ -28,6 +37,8 @@ class PostLocationViewController: UIViewController {
     }
     
     @IBAction func cancelActionTapped() {
-        dismiss(animated: true, completion: nil)
+        if let navigationController = self.navigationController {
+            navigationController.popToRootViewController(animated: true)
+        }
     }
 }

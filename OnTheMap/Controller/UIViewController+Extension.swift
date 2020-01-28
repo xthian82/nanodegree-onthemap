@@ -24,7 +24,11 @@ extension UIViewController {
     }
     
     @IBAction func postLocationTapped(_ sender: UIBarButtonItem) {
-        print("add location tapped")
+        let locationController = self.storyboard!.instantiateViewController(withIdentifier: Constants.postLocationSegue) as! PostLocationViewController
+        locationController.mediaURL = "--"
+        locationController.location = "loca"
+        self.navigationController!.pushViewController(locationController, animated: true)
+        
         //self.performSegue(withIdentifier: Constants.postLocationSegue, sender: nil)
     }
 }

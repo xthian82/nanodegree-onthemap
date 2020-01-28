@@ -185,7 +185,6 @@
                             <barButtonItem image="icon_pin" id="E4w-Cg-cwA">
                                 <connections>
                                     <action selector="postLocationTapped:" destination="BYZ-38-t0r" id="7FO-JS-OLE"/>
-                                    <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="lbF-ly-zgp"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="icon_refresh" id="aOM-TT-b3E">
@@ -197,6 +196,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="8lu-Vv-nPe" id="JxX-0N-WtH"/>
+                        <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="T6b-5U-tno"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -222,7 +222,7 @@
         <!--Add Location-->
         <scene sceneID="qwV-7J-rfb">
             <objects>
-                <viewController id="SG6-BC-wfE" customClass="PostLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addLocation" id="SG6-BC-wfE" customClass="PostLocationViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r1D-8X-lSO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,7 +320,6 @@
                             <barButtonItem image="icon_pin" id="G70-9h-5JM">
                                 <connections>
                                     <action selector="postLocationTapped:" destination="mBM-iZ-gGi" id="STf-ce-Svs"/>
-                                    <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="EKi-sL-ZOf"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="icon_refresh" id="gVx-jO-8jl">
@@ -330,6 +329,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="Knx-LE-rhC"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6M2-6T-axx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -347,6 +349,6 @@
         <image name="power" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EKi-sL-ZOf"/>
+        <segue reference="T6b-5U-tno"/>
     </inferredMetricsTieBreakers>
 </document>
