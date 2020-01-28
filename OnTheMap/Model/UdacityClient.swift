@@ -126,17 +126,20 @@ class UdacityClient {
         }
     }
     
-    class func getStudentLocationById(completion: @escaping ([StudentInformation], Error?) -> Void) {
+    class func getStudentLocationById(completion: @escaping (StudentInformation?, Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocation(userId: Auth.accountId).url,
                                     method: .GET, headers: nil, body: body,
                                     responseType: StudentLocations.self, skipSize: nil) { (response, error) in
             guard let responseObject = response else {
-                completion([], error)
+                completion(nil, error)
                 return
             }
+            if responseObject.results.count == 0 {
+                completion(nil, nil)
+            }
                                         
-            completion(responseObject.results, nil)
+            completion(responseObject.results[0], nil)
         }
     }
     

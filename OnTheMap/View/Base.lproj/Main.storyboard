@@ -165,9 +165,14 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8lu-Vv-nPe">
                                 <rect key="frame" x="16" y="50" width="382" height="802"/>
                             </mapView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="Ku0-O7-ozo">
+                                <rect key="frame" x="188.5" y="432" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="Ku0-O7-ozo" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="5nk-bQ-ZdK"/>
+                            <constraint firstItem="Ku0-O7-ozo" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="EJa-Lp-H2R"/>
                             <constraint firstItem="8lu-Vv-nPe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fSi-Eg-6mz"/>
                             <constraint firstItem="8lu-Vv-nPe" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lpF-ls-19W"/>
                             <constraint firstItem="8lu-Vv-nPe" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="nHT-EU-f1v"/>
@@ -178,13 +183,13 @@
                     <navigationItem key="navigationItem" title="On the Map" id="FPZ-W8-Yma">
                         <barButtonItem key="leftBarButtonItem" image="power" catalog="system" id="eLE-Tj-wEn">
                             <connections>
-                                <action selector="logoutTapped:" destination="BYZ-38-t0r" id="Cf9-PS-f3b"/>
+                                <action selector="logout:" destination="BYZ-38-t0r" id="TYY-lX-LfN"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_pin" id="E4w-Cg-cwA">
                                 <connections>
-                                    <action selector="postLocationTapped:" destination="BYZ-38-t0r" id="7FO-JS-OLE"/>
+                                    <action selector="postLocationMapTapped:" destination="BYZ-38-t0r" id="NAb-xi-gQ6"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="icon_refresh" id="aOM-TT-b3E">
@@ -195,6 +200,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ku0-O7-ozo" id="c1J-Lc-Dv8"/>
                         <outlet property="mapView" destination="8lu-Vv-nPe" id="JxX-0N-WtH"/>
                         <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="T6b-5U-tno"/>
                     </connections>
@@ -295,9 +301,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <activityIndicatorView key="tableHeaderView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="13q-1N-iKz">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="locationDetail" id="BAD-fc-pVM">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BAD-fc-pVM" id="4TW-zA-pD3">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -313,13 +323,13 @@
                     <navigationItem key="navigationItem" title="On the Map" id="emW-Py-Mlp">
                         <barButtonItem key="leftBarButtonItem" image="power" catalog="system" id="Pva-ps-G6Y">
                             <connections>
-                                <action selector="logoutTapped:" destination="mBM-iZ-gGi" id="xwN-QF-la7"/>
+                                <action selector="logout:" destination="mBM-iZ-gGi" id="oPJ-Bh-t5u"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="icon_pin" id="G70-9h-5JM">
                                 <connections>
-                                    <action selector="postLocationTapped:" destination="mBM-iZ-gGi" id="STf-ce-Svs"/>
+                                    <action selector="postLocationTableTapped:" destination="mBM-iZ-gGi" id="tJf-qa-gRb"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="icon_refresh" id="gVx-jO-8jl">
@@ -330,6 +340,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="13q-1N-iKz" id="jPo-Tz-44X"/>
                         <segue destination="Kz8-IQ-knA" kind="presentation" identifier="addLocation" modalPresentationStyle="fullScreen" id="Knx-LE-rhC"/>
                     </connections>
                 </tableViewController>
@@ -349,6 +360,6 @@
         <image name="power" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="T6b-5U-tno"/>
+        <segue reference="Knx-LE-rhC"/>
     </inferredMetricsTieBreakers>
 </document>

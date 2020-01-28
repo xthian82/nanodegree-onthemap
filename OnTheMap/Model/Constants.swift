@@ -16,4 +16,5 @@ struct Constants {
     static let loggedInSegue = "loggedIn"
     static let iconPin = "icon_pin"
     static let postLocationSegue = "addLocation"
+    static let confirmTitle = "Confirm"
 }

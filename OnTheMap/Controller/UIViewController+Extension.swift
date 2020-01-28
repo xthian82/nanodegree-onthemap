@@ -10,25 +10,38 @@ import UIKit
 
 extension UIViewController {
     
-    @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
+    @IBAction func logginOut(_ sender: UIBarButtonItem, activityIndicator: UIActivityIndicatorView) {
+        activityIndicator.startAnimating()
         UdacityClient.logout { (error) in
+            activityIndicator.stopAnimating()
             if let error = error {
-                let alert = ControllersUtil.getDefaultFailureUI(title: Errors.mainTitle, message: error.localizedDescription)
-                self.present(alert, animated: true, completion: nil)
+                ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
             }
-            
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
-    @IBAction func postLocationTapped(_ sender: UIBarButtonItem) {
+    func navigateToPostLocation(_ sender: UIBarButtonItem, activityIndicator: UIActivityIndicatorView) {
         let locationController = self.storyboard!.instantiateViewController(withIdentifier: Constants.postLocationSegue) as! PostLocationViewController
-        locationController.mediaURL = "--"
-        locationController.location = "loca"
-        self.navigationController!.pushViewController(locationController, animated: true)
         
-        //self.performSegue(withIdentifier: Constants.postLocationSegue, sender: nil)
+        activityIndicator.startAnimating()
+        UdacityClient.getStudentLocationById() { (studentInformation, error) in
+            activityIndicator.stopAnimating()
+            if let studentInformation = studentInformation {
+                ControllersUtil.presentConfirmationAlert(controller: self, title: "Confirm", message: "Are you sure you wan't to add new location?, you already added in the past") { (okPressed, cancelPressed) in
+                    if (cancelPressed) {
+                        return
+                    } else {
+                        locationController.mediaURL = studentInformation.mediaURL
+                        locationController.location = studentInformation.mapString
+                        self.navigationController!.pushViewController(locationController, animated: true)
+                    }
+                }
+            } else {
+                self.navigationController!.pushViewController(locationController, animated: true)
+            }
+        }
     }
 }

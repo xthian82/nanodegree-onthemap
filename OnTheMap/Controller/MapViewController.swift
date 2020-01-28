@@ -19,6 +19,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         return appDelegate.locations!
     }
     var annotations = [MKPointAnnotation]()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: View Functions
     override func viewDidLoad() {
@@ -40,6 +41,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.reloadLocations()
             }
         }
+    }
+    
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        logginOut(sender, activityIndicator: activityIndicator)
+    }
+    
+    @IBAction func postLocationMapTapped(_ sender: UIBarButtonItem) {
+        navigateToPostLocation(sender, activityIndicator: activityIndicator)
     }
     
     //MARK: Map Actions

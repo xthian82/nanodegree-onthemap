@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
     //MARK: Button Actions
     @IBAction func loginTapped(_ sender: UIButton) {
         if self.emailTextField.text?.count == 0 || self.passwordTextField.text?.count == 0 {
-            ControllersUtil.showAlert(controller: self, title: Errors.missingValuesTitle, message: Errors.requiredLoginFields)
+            ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLoginFields)
             return
         }
         setLoggingIn(true)

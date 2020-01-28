@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: Window functions
     override func viewDidLoad() {
@@ -38,6 +39,14 @@ class TableViewController: UITableViewController {
                 self.tableView!.reloadData()
             }
         }
+    }
+    
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        logginOut(sender, activityIndicator: activityIndicator)
+    }
+    
+    @IBAction func postLocationTableTapped(_ sender: UIBarButtonItem) {
+        navigateToPostLocation(sender, activityIndicator: activityIndicator)
     }
     
     //MARK: Table functions

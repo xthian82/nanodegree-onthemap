@@ -31,7 +31,7 @@ class PostLocationViewController: UIViewController {
     //MARK: Action Buttons
     @IBAction func findLocationTapped() {
         if self.locationTextfield.text?.count == 0 || self.mediaURLTextfield.text?.count == 0 {
-            ControllersUtil.showAlert(controller: self, title: Errors.missingValuesTitle, message: Errors.requiredLocationFields)
+            ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLocationFields)
             return
         }
     }
