@@ -18,4 +18,5 @@ struct Errors {
     static let loginErrorTitle = "Login Error"
     static let missingValuesTitle = "Missing Values"
     static let requiredLoginFields = "Plase add email and password"
+    static let requiredLocationFields = "Plase add location and media url"
 }

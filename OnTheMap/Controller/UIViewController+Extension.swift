@@ -22,4 +22,9 @@ extension UIViewController {
             }
         }
     }
+    
+    @IBAction func postLocationTapped(_ sender: UIBarButtonItem) {
+        print("add location tapped")
+        //self.performSegue(withIdentifier: Constants.postLocationSegue, sender: nil)
+    }
 }

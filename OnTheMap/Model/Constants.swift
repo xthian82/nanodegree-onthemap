@@ -13,6 +13,7 @@ struct Constants {
     static let signUpLink = "https://auth.udacity.com/sign-up"
     static let pinId = "pin"
     static let locationDetail = "locationDetail"
-    static let loggenInSegue = "loggedIn"
+    static let loggedInSegue = "loggedIn"
     static let iconPin = "icon_pin"
+    static let postLocationSegue = "addLocation"
 }

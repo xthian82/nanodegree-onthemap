@@ -82,7 +82,7 @@ class LoginViewController: UIViewController {
         let appDelegate = object as! AppDelegate
         appDelegate.locations = locations
         clearTextFields()
-        self.performSegue(withIdentifier: Constants.loggenInSegue, sender: nil)
+        self.performSegue(withIdentifier: Constants.loggedInSegue, sender: nil)
     }
     
     //MARK: Helper methods
