@@ -11,8 +11,7 @@ import UIKit
 extension UIViewController {
     
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
-        print("logout tapped")
-        /*UdacityClient.logout { (error) in
+        UdacityClient.logout { (error) in
             if let error = error {
                 let alert = ControllersUtil.getDefaultFailureUI(title: "Error!", message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
@@ -21,6 +20,6 @@ extension UIViewController {
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
             }
-        }*/
+        }
     }
 }
