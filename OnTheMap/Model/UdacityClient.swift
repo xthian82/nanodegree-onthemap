@@ -11,6 +11,8 @@ import Foundation
 class UdacityClient {
 
     // MARK: Properties
+    static let skipSize = 5
+
     struct Auth {
         static var accountId = ""
         static var sessionId = ""
@@ -57,7 +59,7 @@ class UdacityClient {
         let headers: [String: String] = [HttpKeys.acceptHeader.value: HttpKeys.json.value,
                                          HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
 
-        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .POST, headers: headers, body: body, responseType: SessionResponse.self) { (response, error) in
+        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .POST, headers: headers, body: body, responseType: SessionResponse.self, skipSize: skipSize) { (response, error) in
                             
             guard let responseObject = response else {
                 completion(false, error)
@@ -78,7 +80,7 @@ class UdacityClient {
         }
         let body: EmptyBody? = nil
         
-        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .DELETE, headers: headers, body: body, responseType: Session.self) { (response, error) in
+        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .DELETE, headers: headers, body: body, responseType: Session.self, skipSize: skipSize) { (response, error) in
                             
             guard let _ = response else {
                 completion(error)
@@ -93,29 +95,30 @@ class UdacityClient {
         }
     }
     
-    class func getUserData(completion: @escaping (UserDataResponse?, Error?) -> Void) {
+    class func getUserData(completion: @escaping (UserData?, Error?) -> Void) {
         let body: EmptyBody? = nil
 
-        HttpUtil.taskForHttpRequest(url: Endpoints.userData(userId: Auth.accountId).url, method: .GET, headers: nil, body: body, responseType: UserDataResponse.self) { (response, error) in
+        HttpUtil.taskForHttpRequest(url: Endpoints.userData(userId: Auth.accountId).url, method: .GET, headers: nil, body: body, responseType: UserData.self, skipSize: skipSize) { (response, error) in
                             
             guard let responseObject = response else {
                 completion(nil, error)
                 return
             }
             
-            Auth.firstName = responseObject.user.firstName
-            Auth.lastName = responseObject.user.lastName
+            Auth.firstName = responseObject.firstName
+            Auth.lastName = responseObject.lastName
             
             completion(responseObject, nil)
         }
     }
     
-    class func getStudentLocations(completion: @escaping ([StudentInformation]?, Error?) -> Void) {
+    class func getStudentLocations(completion: @escaping ([StudentInformation], Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocations(orderBy: "-updatedAt", limitSize: 100).url,
-                                    method: .GET, headers: nil, body: body, responseType: StudentLocations.self) { (response, error) in
+                                    method: .GET, headers: nil, body: body, responseType: StudentLocations.self,
+                                    skipSize: nil) { (response, error) in
             guard let responseObject = response else {
-                completion(nil, error)
+                completion([], error)
                 return
             }
                                         
@@ -123,13 +126,13 @@ class UdacityClient {
         }
     }
     
-    class func getStudentLocationById(completion: @escaping ([StudentInformation]?, Error?) -> Void) {
+    class func getStudentLocationById(completion: @escaping ([StudentInformation], Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocation(userId: Auth.accountId).url,
                                     method: .GET, headers: nil, body: body,
-                                    responseType: StudentLocations.self) { (response, error) in
+                                    responseType: StudentLocations.self, skipSize: nil) { (response, error) in
             guard let responseObject = response else {
-                completion(nil, error)
+                completion([], error)
                 return
             }
                                         
@@ -141,7 +144,7 @@ class UdacityClient {
                                   completion: @escaping (AddStudentResponse?, Error?) -> Void) {
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
         
-        HttpUtil.taskForHttpRequest(url: Endpoints.addStudentLocation.url, method: .POST, headers: headers, body: studentLocation, responseType: AddStudentResponse.self) { (response, error) in
+        HttpUtil.taskForHttpRequest(url: Endpoints.addStudentLocation.url, method: .POST, headers: headers, body: studentLocation, responseType: AddStudentResponse.self, skipSize: nil) { (response, error) in
                                        
            guard let responseObject = response else {
                completion(nil, error)
@@ -159,7 +162,7 @@ class UdacityClient {
         
         HttpUtil.taskForHttpRequest(url: Endpoints.updateStudentLocation(userId: Auth.accountId).url,
                                     method: .PUT, headers: headers, body: studentLocation,
-                                    responseType: UpdateStudentResponse.self) { (response, error) in
+                                    responseType: UpdateStudentResponse.self, skipSize: nil) { (response, error) in
                                        
            guard let responseObject = response else {
                completion(nil, error)

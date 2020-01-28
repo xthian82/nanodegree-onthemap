@@ -16,7 +16,7 @@ struct UserData: Codable {
     let cohortKeys: [String]
     let signature: String?
     let stripeCustomerId: String?
-    let guardIssue: Guard
+    let guardIssue: Guard?
     let facebookId: String?
     let timezone: String?
     let sitePreferences: String?
@@ -38,7 +38,7 @@ struct UserData: Codable {
     let tags: [String]
     let affiliateProfiles: [String]
     let hasPassword: Bool
-    let emailPreferences: EmailPreference
+    let emailPreferences: EmailPreference?
     let resume: String?
     let key: String
     let nickname: String
@@ -46,7 +46,7 @@ struct UserData: Codable {
     let memberships: [Membership]
     let zendeskId: String?
     let registered: Bool
-    let linkedinUrl: Bool
+    let linkedinUrl: String?
     let googleId: String?
     let imageUrl: String?
     

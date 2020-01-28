@@ -23,7 +23,6 @@
 		C47E132E23DD62D60044EC42 /* SessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E132D23DD62D60044EC42 /* SessionResponse.swift */; };
 		C47E133023DD639B0044EC42 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E132F23DD639B0044EC42 /* Account.swift */; };
 		C47E133223DD63A80044EC42 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E133123DD63A80044EC42 /* Session.swift */; };
-		C47E133423DDD7730044EC42 /* UserDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E133323DDD7730044EC42 /* UserDataResponse.swift */; };
 		C47E133623DDD7FA0044EC42 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E133523DDD7FA0044EC42 /* UserData.swift */; };
 		C47E133823DDDAD90044EC42 /* Guard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E133723DDDAD90044EC42 /* Guard.swift */; };
 		C47E133B23DDDB8D0044EC42 /* Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E133A23DDDB8D0044EC42 /* Permission.swift */; };
@@ -42,6 +41,8 @@
 		C47E135D23DE506B0044EC42 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */; };
 		C47E136123DFC7620044EC42 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E136023DFC7620044EC42 /* StudentInformation.swift */; };
 		C47E136323DFC8180044EC42 /* StudentLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E136223DFC8180044EC42 /* StudentLocations.swift */; };
+		C47E136523DFC8C20044EC42 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E136423DFC8C20044EC42 /* LoginViewController.swift */; };
+		C47E136723DFDA6C0044EC42 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E136623DFDA6C0044EC42 /* ErrorResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,7 +85,6 @@
 		C47E132D23DD62D60044EC42 /* SessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionResponse.swift; sourceTree = "<group>"; };
 		C47E132F23DD639B0044EC42 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		C47E133123DD63A80044EC42 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		C47E133323DDD7730044EC42 /* UserDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataResponse.swift; sourceTree = "<group>"; };
 		C47E133523DDD7FA0044EC42 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C47E133723DDDAD90044EC42 /* Guard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guard.swift; sourceTree = "<group>"; };
 		C47E133A23DDDB8D0044EC42 /* Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permission.swift; sourceTree = "<group>"; };
@@ -103,6 +103,8 @@
 		C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C47E136023DFC7620044EC42 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		C47E136223DFC8180044EC42 /* StudentLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocations.swift; sourceTree = "<group>"; };
+		C47E136423DFC8C20044EC42 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C47E136623DFDA6C0044EC42 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 		C47E131D23DAA08A0044EC42 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C47E136423DFC8C20044EC42 /* LoginViewController.swift */,
 				C47E12F123DA9FB00044EC42 /* MapViewController.swift */,
 				C47E132223DD51A40044EC42 /* TableViewController.swift */,
 				C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */,
@@ -227,7 +230,6 @@
 		C47E133923DDDAE30044EC42 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				C47E133323DDD7730044EC42 /* UserDataResponse.swift */,
 				C47E133523DDD7FA0044EC42 /* UserData.swift */,
 				C47E133723DDDAD90044EC42 /* Guard.swift */,
 				C47E133A23DDDB8D0044EC42 /* Permission.swift */,
@@ -245,6 +247,7 @@
 				C47E135923DE3AC20044EC42 /* Session */,
 				C47E134C23DDF44B0044EC42 /* Student */,
 				C47E133923DDDAE30044EC42 /* User */,
+				C47E136623DFDA6C0044EC42 /* ErrorResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -419,12 +422,13 @@
 				C47E132623DD5D0B0044EC42 /* UdacityClient.swift in Sources */,
 				C47E132123DD4C470044EC42 /* Keys.swift in Sources */,
 				C47E133023DD639B0044EC42 /* Account.swift in Sources */,
+				C47E136723DFDA6C0044EC42 /* ErrorResponse.swift in Sources */,
 				C47E133823DDDAD90044EC42 /* Guard.swift in Sources */,
-				C47E133423DDD7730044EC42 /* UserDataResponse.swift in Sources */,
 				C47E134323DDE4DB0044EC42 /* Membership.swift in Sources */,
 				C47E132E23DD62D60044EC42 /* SessionResponse.swift in Sources */,
 				C47E134623DDEC7F0044EC42 /* HttpUtil.swift in Sources */,
 				C47E133223DD63A80044EC42 /* Session.swift in Sources */,
+				C47E136523DFC8C20044EC42 /* LoginViewController.swift in Sources */,
 				C47E134123DDE34A0044EC42 /* EmailPreference.swift in Sources */,
 				C47E132B23DD615D0044EC42 /* LoginData.swift in Sources */,
 				C47E133F23DDE1460044EC42 /* Email.swift in Sources */,

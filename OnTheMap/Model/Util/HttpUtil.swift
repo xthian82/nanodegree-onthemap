@@ -10,8 +10,6 @@ import Foundation
 
 class HttpUtil {
     
-    static let skipSize = 5
-    
     // MARK: Helper Methods
     class func taskForHttpRequest<Request: Encodable, Response: Decodable>(
         url: URL,
@@ -19,6 +17,7 @@ class HttpUtil {
         headers: [String: String]?,
         body: Request?,
         responseType: Response.Type,
+        skipSize: Int?,
         completion: @escaping (Response?, Error?) -> Void) {
         
         var urlRequest = URLRequest(url: url)
@@ -45,34 +44,48 @@ class HttpUtil {
                 }
                 return
             }
+            
+            // for udacity API, some endpoints need to skip first 'skipSize' characters
+            // if present, we should skip it
+            var newData: Data
+            if let skipSize = skipSize {
+                let range = skipSize..<data.count
+                newData = data.subdata(in: range)
+            } else {
+                newData = data
+            }
+            
+            //Debbugin purposes, delete later
+            let rawString = String(data: newData, encoding: .utf8)!
+            print("rawVAl ===> \(rawString)")
+            
+            // parse the json received
             let decoder = JSONDecoder()
             do {
-                // for udacity API, we need to skip first 5 characters from the response
-                let range = skipSize..<data.count
-                let newData = data.subdata(in: range)
                 let responseObject = try decoder.decode(Response.self, from: newData)
                 DispatchQueue.main.async {
                     completion(responseObject, nil)
                 }
             } catch {
-                /*
+                // error parsing, try to decode an error from the API
                 do {
-                    let errorResponse = try decoder.decode(TMDBResponse.self, from: data)
+                    let errorResponse = try decoder.decode(ErrorResponse.self, from: newData)
                     DispatchQueue.main.async {
                         completion(nil, errorResponse)
                     }
-                } catch {*/
+                } catch {
+                    // cannot recover, we finish with general error
                     DispatchQueue.main.async {
                         completion(nil, error)
                     }
-                //}
+                }
             }
         }
         
         // sending
         task.resume()
     }
-    
+
     class func getXsrfCookie() -> HTTPCookie? {
         var xsrfCookie: HTTPCookie?
         

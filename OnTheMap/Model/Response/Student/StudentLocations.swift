@@ -10,7 +10,7 @@ import Foundation
 
 struct StudentLocations: Codable {
 
-    let results: [StudentInformation]?
+    let results: [StudentInformation]
     
     enum CodingKeys: String, CodingKey {
         case results

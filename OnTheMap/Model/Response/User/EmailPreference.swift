@@ -10,9 +10,9 @@ import Foundation
 
 struct EmailPreference: Codable {
 
-    let okUser: Bool
-    let master: Bool
-    let okCourse: Bool
+    let okUser: Bool?
+    let master: Bool?
+    let okCourse: Bool?
     
     enum CodingKeys: String, CodingKey {
         case okUser = "ok_user_research"

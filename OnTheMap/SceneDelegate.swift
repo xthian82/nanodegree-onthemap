@@ -52,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         
         if components?.scheme == "themoviemanager" && components?.path == "authenticate" {
-            let loginVC = window?.rootViewController as! UIViewController //LoginViewController
+            let loginVC = window?.rootViewController as! LoginViewController
             
             //TMDBClient.getNewSession(completion: loginVC.handleSessionResponse(success:error:))
         }

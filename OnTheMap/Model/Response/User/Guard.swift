@@ -10,10 +10,10 @@ import Foundation
 
 struct Guard: Codable {
 
-    let canEdit: Bool
-    let permissions: [Permission]
-    let allowedBehaviors: [String]
-    let subjectKind: String
+    let canEdit: Bool?
+    let permissions: [Permission]?
+    let allowedBehaviors: [String]?
+    let subjectKind: String?
     
     enum CodingKeys: String, CodingKey {
         case canEdit = "can_edit"
