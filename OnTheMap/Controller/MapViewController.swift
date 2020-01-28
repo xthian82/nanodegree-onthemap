@@ -13,34 +13,41 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    var annotations = [MKPointAnnotation]()
     
     var locations: [StudentInformation] {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
+    var annotations = [MKPointAnnotation]()
     
     //MARK: View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for location in locations {
-            annotations.append(getAnnotationFromInformation(location))
-        }
         self.mapView.delegate = self
-        self.mapView.addAnnotations(annotations)
+        loadLocations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mapView!.reloadInputViews()
     }
     
     @IBAction func reloadMap() {
-        self.mapView.reloadInputViews()
+        UdacityClient.getStudentLocations() { (locations, error) in
+            if let error = error {
+                ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
+            } else {
+                self.reloadLocations()
+            }
+        }
     }
     
     //MARK: Map Actions
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: Keys.pinId) as? MKPinAnnotationView
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.pinId) as? MKPinAnnotationView
 
         if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Keys.pinId)
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.pinId)
             pinView!.canShowCallout = true
             pinView!.pinTintColor = .red
             pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
@@ -57,8 +64,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if let toOpen = view.annotation?.subtitle! {
                 UIApplication.shared.open(URL(string: toOpen)!, options: [:]) { (success) in
                     if !success {
-                        let alert = ControllersUtil.getDefaultFailureUI(title: "Wrong Url!", message: "Cannot open the url provided")
-                        self.present(alert, animated: true, completion: nil)
+                        ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: Errors.cannotOpenUrl)
                     }
                 }
             }
@@ -66,6 +72,22 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
 
     // MARK: Helper method
+    func loadLocations() {
+        for location in locations {
+            annotations.append(getAnnotationFromInformation(location))
+        }
+        self.mapView.addAnnotations(annotations)
+    }
+    
+    func reloadLocations() {
+        self.mapView.removeAnnotations(annotations)
+        annotations.removeAll()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.locations = locations
+        loadLocations()
+        self.mapView.reloadInputViews()
+    }
+    
     func getAnnotationFromInformation(_ studentLocation: StudentInformation) -> MKPointAnnotation {
         
         // The lat and long are used to create a CLLocationCoordinates2D instance.

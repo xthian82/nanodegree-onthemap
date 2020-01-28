@@ -13,7 +13,7 @@ extension UIViewController {
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         UdacityClient.logout { (error) in
             if let error = error {
-                let alert = ControllersUtil.getDefaultFailureUI(title: "Error!", message: error.localizedDescription)
+                let alert = ControllersUtil.getDefaultFailureUI(title: Errors.mainTitle, message: error.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
             }
             

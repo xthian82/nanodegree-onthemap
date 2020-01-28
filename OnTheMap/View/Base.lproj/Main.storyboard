@@ -228,7 +228,11 @@
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem image="icon_refresh" id="gVx-jO-8jl"/>
+                            <barButtonItem image="icon_refresh" id="gVx-jO-8jl">
+                                <connections>
+                                    <action selector="reloadInfo" destination="mBM-iZ-gGi" id="ufa-8F-66h"/>
+                                </connections>
+                            </barButtonItem>
                             <barButtonItem image="icon_pin" id="G70-9h-5JM"/>
                         </rightBarButtonItems>
                     </navigationItem>

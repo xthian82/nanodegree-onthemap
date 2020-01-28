@@ -16,4 +16,14 @@ class ControllersUtil {
         alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alertVC
     }
+    
+    class func presentAlert(controller: UIViewController, title: String, message: String) {
+        let alert = getDefaultFailureUI(title: title, message: message)
+        controller.present(alert, animated: true, completion: nil)
+    }
+    
+    class func showAlert(controller: UIViewController, title: String, message: String) {
+        let alert = getDefaultFailureUI(title: title, message: message)
+        controller.show(alert, sender: nil)
+    }
 }

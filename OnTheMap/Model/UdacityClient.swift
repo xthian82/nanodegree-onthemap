@@ -80,7 +80,7 @@ class UdacityClient {
         }
         let body: EmptyBody? = nil
         
-        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .DELETE, headers: headers, body: body, responseType: Session.self, skipSize: skipSize) { (response, error) in
+        HttpUtil.taskForHttpRequest(url: Endpoints.session.url, method: .DELETE, headers: headers, body: body, responseType: LogoutResponse.self, skipSize: skipSize) { (response, error) in
                             
             guard let _ = response else {
                 completion(error)

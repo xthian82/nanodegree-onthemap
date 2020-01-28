@@ -20,19 +20,18 @@ class LoginViewController: UIViewController {
     //MARK: Window functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        clearTextFields()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        emailTextField.text = ""
-        passwordTextField.text = ""
+        clearTextFields()
     }
     
     //MARK: Button Actions
     @IBAction func loginTapped(_ sender: UIButton) {
         if self.emailTextField.text?.count == 0 || self.passwordTextField.text?.count == 0 {
-            showLoginFailure(title: "Missing Values", message: "Plase add email and password")
+            ControllersUtil.showAlert(controller: self, title: Errors.missingValuesTitle, message: Errors.requiredLoginFields)
             return
         }
         setLoggingIn(true)
@@ -50,14 +49,16 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signupTapped() {
-        UIApplication.shared.open(URL(string: "https://auth.udacity.com/sign-up")!, options: [:], completionHandler: nil)
+        UIApplication.shared.open(URL(string: Constants.signUpLink)!, options: [:], completionHandler: nil)
     }
     
+    //MARK: Delegate API functions
     func handleLoginResponse(success: Bool, error: Error?) {
            if success {
                UdacityClient.getUserData(completion: self.handleSessionResponse(userData:error:))
            } else {
-                showLoginFailure(title: "Login Error", message: error?.localizedDescription ?? "")
+            setLoggingIn(false)
+            ControllersUtil.showAlert(controller: self, title: Errors.loginErrorTitle, message: error?.localizedDescription ?? "")
            }
     }
     
@@ -65,29 +66,23 @@ class LoginViewController: UIViewController {
         if let _ = userData {
             UdacityClient.getStudentLocations(completion: self.handleDataResponse(locations:error:))
         } else {
-            showLoginFailure(title: "Data Error", message: error?.localizedDescription ?? "")
+            setLoggingIn(false)
+            ControllersUtil.showAlert(controller: self, title: Errors.dataErrorTitle, message: error?.localizedDescription ?? "")
         }
     }
     
     func handleDataResponse(locations: [StudentInformation], error: Error?) {
         if let error = error {
-            showLoginFailure(title: "Location Error", message: error.localizedDescription)
+            setLoggingIn(false)
+            ControllersUtil.showAlert(controller: self, title: Errors.locationErrorTitle, message: error.localizedDescription)
             return
         }
         setLoggingIn(false)
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.locations = locations
-        self.performSegue(withIdentifier: "loggedIn", sender: nil)
-    }
-    
-    //MARK: TextField delegate
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if emailTextField.text?.count == 0 || passwordTextField.text?.count == 0 {
-            self.loginButton.isEnabled = false
-        } else {
-            self.loginButton.isEnabled = true
-        }
+        clearTextFields()
+        self.performSegue(withIdentifier: Constants.loggenInSegue, sender: nil)
     }
     
     //MARK: Helper methods
@@ -103,9 +98,8 @@ class LoginViewController: UIViewController {
         //self.loginFacebookButton.isEnabled = !loggingIn
     }
     
-    func showLoginFailure(title: String, message: String) {
-        setLoggingIn(false)
-        let alertVC = ControllersUtil.getDefaultFailureUI(title: title, message: message)
-        show(alertVC, sender: nil)
+    func clearTextFields() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
 }
