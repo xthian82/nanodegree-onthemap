@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostLocationViewController: UIViewController {
+class PostLocationViewController: UIViewController, UINavigationControllerDelegate {
     //MARK: Properties
     @IBOutlet weak var locationTextfield: UITextField!
     @IBOutlet weak var mediaURLTextfield: UITextField!
@@ -26,7 +26,13 @@ class PostLocationViewController: UIViewController {
         super.viewWillAppear(animated)
         locationTextfield.text = location ?? ""
         mediaURLTextfield.text = mediaURL ?? ""
+        self.tabBarController?.tabBar.isHidden = true
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+   }
     
     //MARK: Action Buttons
     @IBAction func findLocationTapped() {

@@ -33,9 +33,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-u" translatesAutoresizingMaskIntoConstraints="NO" id="GKb-gm-E2p">
-                                <rect key="frame" x="176" y="217.5" width="62" height="128"/>
+                                <rect key="frame" x="176" y="265.5" width="62" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="SUg-23-Nv5"/>
+                                    <constraint firstAttribute="height" constant="90" id="SUg-23-Nv5"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wa-tP-vpF">
@@ -103,7 +103,7 @@
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="trailing" secondItem="bcJ-YZ-SQy" secondAttribute="trailing" constant="-32" id="K6f-fn-0lT"/>
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="leading" secondItem="bcJ-YZ-SQy" secondAttribute="leading" constant="32" id="Rxk-pb-oqv"/>
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="centerY" secondItem="bcJ-YZ-SQy" secondAttribute="centerY" id="gug-Bi-uDQ"/>
-                            <constraint firstItem="GKb-gm-E2p" firstAttribute="top" secondItem="9Wa-tP-vpF" secondAttribute="top" constant="-150" id="p2J-ud-Ur5"/>
+                            <constraint firstItem="GKb-gm-E2p" firstAttribute="bottom" secondItem="9Wa-tP-vpF" secondAttribute="top" constant="-12" id="p2J-ud-Ur5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bcJ-YZ-SQy"/>
                     </view>
@@ -234,9 +234,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_world" translatesAutoresizingMaskIntoConstraints="NO" id="yUM-yZ-Os2">
-                                <rect key="frame" x="181" y="312.5" width="52" height="96"/>
+                                <rect key="frame" x="181" y="310.5" width="52" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="96" id="34S-XN-8gr"/>
+                                    <constraint firstAttribute="height" constant="90" id="34S-XN-8gr"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="CuC-PJ-e9K">
@@ -268,7 +268,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="yUM-yZ-Os2" firstAttribute="top" secondItem="CuC-PJ-e9K" secondAttribute="top" constant="-100" id="3yf-cw-dUY"/>
+                            <constraint firstItem="yUM-yZ-Os2" firstAttribute="bottom" secondItem="CuC-PJ-e9K" secondAttribute="top" constant="-12" id="3yf-cw-dUY"/>
                             <constraint firstItem="CuC-PJ-e9K" firstAttribute="trailing" secondItem="MBn-OA-XXT" secondAttribute="trailing" constant="-32" id="9wy-Xs-DSh"/>
                             <constraint firstItem="CuC-PJ-e9K" firstAttribute="centerY" secondItem="MBn-OA-XXT" secondAttribute="centerY" id="QOk-pl-XRV"/>
                             <constraint firstItem="yUM-yZ-Os2" firstAttribute="centerX" secondItem="MBn-OA-XXT" secondAttribute="centerX" id="bhb-p8-vFm"/>
