@@ -11,9 +11,15 @@ import UIKit
 
 class ControllersUtil {
     
+    //MARK: Properties
+    enum Dialog: String {
+        case OK, CANCEL
+    }
+    
+    //MARK: Common Alerts UI
     class func getDefaultAlertUI(title: String, message: String) -> UIAlertController {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alertVC.addAction(UIAlertAction(title: Dialog.OK.rawValue, style: .default, handler: nil))
         return alertVC
     }
     
@@ -21,12 +27,12 @@ class ControllersUtil {
         let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
                      
         // Create OK button with action handler
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+        let ok = UIAlertAction(title: Dialog.OK.rawValue, style: .default, handler: { (action) -> Void in
             completion(true, false)
         })
                      
         // Create Cancel button with action handlder
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let cancel = UIAlertAction(title: Dialog.CANCEL.rawValue, style: .cancel) { (action) -> Void in
             completion(false, true)
         }
                      
@@ -37,6 +43,7 @@ class ControllersUtil {
         return dialogMessage
     }
     
+    //MARK: Showing Alert to Controllers
     class func presentConfirmationAlert(controller: UIViewController, title: String, message: String, completion: @escaping (Bool, Bool) -> ()) {
         let confirmationAlert = getDefaultConfirmationUI(title: title, message: message, completion: completion)
         controller.present(confirmationAlert, animated: true, completion: nil)

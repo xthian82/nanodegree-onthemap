@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostLocationViewController: UIViewController, UINavigationControllerDelegate {
+class PostLocationViewController: UIViewController {
     //MARK: Properties
     @IBOutlet weak var locationTextfield: UITextField!
     @IBOutlet weak var mediaURLTextfield: UITextField!
@@ -32,7 +32,7 @@ class PostLocationViewController: UIViewController, UINavigationControllerDelega
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
-   }
+    }
     
     //MARK: Action Buttons
     @IBAction func findLocationTapped() {
@@ -40,6 +40,11 @@ class PostLocationViewController: UIViewController, UINavigationControllerDelega
             ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLocationFields)
             return
         }
+
+        let mapDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: Constants.searchLocationSeugue) as! MapDetailViewController
+        mapDetailViewController.location = self.locationTextfield.text!
+        mapDetailViewController.mediaURL = self.mediaURLTextfield.text!
+        self.navigationController!.pushViewController(mapDetailViewController, animated: true)
     }
     
     @IBAction func cancelActionTapped() {

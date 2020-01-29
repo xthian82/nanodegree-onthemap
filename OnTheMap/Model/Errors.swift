@@ -16,4 +16,5 @@ struct Errors {
     static let requiredLoginFields = "Plase add email and password"
     static let requiredLocationFields = "Plase add location and media url"
     static let facebookLoginProblem = "Cannot login to Facebook"
+    static let findLocationProblem = "Location not found"
 }

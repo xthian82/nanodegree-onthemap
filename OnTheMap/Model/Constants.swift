@@ -16,5 +16,7 @@ struct Constants {
     static let loggedInSegue = "loggedIn"
     static let iconPin = "icon_pin"
     static let postLocationSegue = "addLocation"
+    static let searchLocationSeugue = "searchLocation"
     static let confirmTitle = "Confirm"
+    static let locationAlreadyAdded = "Are you sure you wan't to add new location?, you already added a location"
 }

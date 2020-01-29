@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		86AB973723E0A48000CEEE49 /* PostLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB973623E0A48000CEEE49 /* PostLocationViewController.swift */; };
 		86AB973923E0AB7200CEEE49 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB973823E0AB7200CEEE49 /* RoundButton.swift */; };
+		86AB973B23E1F37700CEEE49 /* MapDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86AB973A23E1F37700CEEE49 /* MapDetailViewController.swift */; };
 		C47E12EE23DA9FB00044EC42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */; };
 		C47E12F023DA9FB00044EC42 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */; };
 		C47E12F223DA9FB00044EC42 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47E12F123DA9FB00044EC42 /* MapViewController.swift */; };
@@ -85,6 +86,7 @@
 /* Begin PBXFileReference section */
 		86AB973623E0A48000CEEE49 /* PostLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLocationViewController.swift; sourceTree = "<group>"; };
 		86AB973823E0AB7200CEEE49 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		86AB973A23E1F37700CEEE49 /* MapDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetailViewController.swift; sourceTree = "<group>"; };
 		C47E12EA23DA9FB00044EC42 /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 				C47E132223DD51A40044EC42 /* TableViewController.swift */,
 				C47E135C23DE506B0044EC42 /* UIViewController+Extension.swift */,
 				86AB973623E0A48000CEEE49 /* PostLocationViewController.swift */,
+				86AB973A23E1F37700CEEE49 /* MapDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				C47E134823DDED3E0044EC42 /* HttpMethodType.swift in Sources */,
 				C47E135B23DE432A0044EC42 /* ControllersUtil.swift in Sources */,
 				C47E12F023DA9FB00044EC42 /* SceneDelegate.swift in Sources */,
+				86AB973B23E1F37700CEEE49 /* MapDetailViewController.swift in Sources */,
 				C47E133B23DDDB8D0044EC42 /* Permission.swift in Sources */,
 				C47E134A23DDEE360044EC42 /* HttpKeys.swift in Sources */,
 				C47E135823DE25F00044EC42 /* EmptyBody.swift in Sources */,

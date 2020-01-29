@@ -280,7 +280,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="findLocationTapped" destination="SG6-BC-wfE" eventType="touchUpInside" id="UTL-vc-dLK"/>
+                                            <action selector="findLocationTapped" destination="SG6-BC-wfE" eventType="touchUpInside" id="tOy-A6-165"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -299,7 +299,7 @@
                     <navigationItem key="navigationItem" title="Add Location" id="sfD-XI-rBW">
                         <barButtonItem key="leftBarButtonItem" image="arrowshape.turn.up.left" catalog="system" id="7NS-Nt-lQI">
                             <connections>
-                                <action selector="cancelActionTapped" destination="SG6-BC-wfE" id="IJa-AM-Lot"/>
+                                <action selector="cancelActionTapped" destination="SG6-BC-wfE" id="edE-4X-qtF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -307,11 +307,83 @@
                         <outlet property="findLocationButton" destination="eG7-vu-vvO" id="xrN-eo-qF2"/>
                         <outlet property="locationTextfield" destination="d7a-Om-Cmw" id="30j-1O-RDe"/>
                         <outlet property="mediaURLTextfield" destination="R8G-OL-a4p" id="NJh-k7-bSc"/>
+                        <segue destination="Buo-iJ-Zgo" kind="presentation" identifier="searchLocation" modalPresentationStyle="fullScreen" id="tDS-N6-d8n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bwi-yr-qqD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1580" y="115"/>
+        </scene>
+        <!--Add Location-->
+        <scene sceneID="PzO-Mq-yFV">
+            <objects>
+                <viewController storyboardIdentifier="searchLocation" id="vvE-Vj-YLT" customClass="MapDetailViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="np9-zh-nj4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vC3-bk-8H3">
+                                <rect key="frame" x="12" y="100" width="390" height="750"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7k-cu-xbG" customClass="RoundButton" customModule="OnTheMap" customModuleProvider="target">
+                                <rect key="frame" x="18" y="805" width="378" height="35"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="2CT-dr-LsD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="tintColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="lightTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="postLocationToUdacity" destination="vvE-Vj-YLT" eventType="touchUpInside" id="iEg-Ad-Alb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vC3-bk-8H3" firstAttribute="trailing" secondItem="Vdn-hN-w5e" secondAttribute="trailing" constant="-12" id="5Gi-af-TzI"/>
+                            <constraint firstItem="vC3-bk-8H3" firstAttribute="leading" secondItem="Vdn-hN-w5e" secondAttribute="leading" constant="12" id="CPb-Dt-gMK"/>
+                            <constraint firstItem="vC3-bk-8H3" firstAttribute="bottom" secondItem="Vdn-hN-w5e" secondAttribute="bottom" constant="-12" id="HmU-Qj-Ear"/>
+                            <constraint firstItem="T7k-cu-xbG" firstAttribute="bottom" secondItem="vC3-bk-8H3" secondAttribute="bottom" constant="-10" id="iVr-oR-kIf"/>
+                            <constraint firstItem="vC3-bk-8H3" firstAttribute="top" secondItem="Vdn-hN-w5e" secondAttribute="top" constant="12" id="ijH-X8-pn1"/>
+                            <constraint firstItem="T7k-cu-xbG" firstAttribute="trailing" secondItem="Vdn-hN-w5e" secondAttribute="trailing" constant="-18" id="vde-kc-1GU"/>
+                            <constraint firstItem="T7k-cu-xbG" firstAttribute="leading" secondItem="Vdn-hN-w5e" secondAttribute="leading" constant="18" id="zIT-Rf-ong"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vdn-hN-w5e"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Location" id="bR7-Q3-7KD">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="arrowshape.turn.up.left" catalog="system" id="R4C-tC-PxI">
+                            <connections>
+                                <action selector="cancelActionTapped" destination="vvE-Vj-YLT" id="pEz-TM-fxX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="vC3-bk-8H3" id="XAs-ZT-cLB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Oz-rt-mEX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3465" y="46"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qvz-oM-0if">
+            <objects>
+                <navigationController id="Buo-iJ-Zgo" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6C4-B9-I1I">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="vvE-Vj-YLT" kind="relationship" relationship="rootViewController" id="3qW-5J-ydi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YxQ-Yy-Vkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2629" y="46"/>
         </scene>
         <!--On the Map-->
         <scene sceneID="aH4-Ke-9xS">
@@ -380,6 +452,6 @@
         <image name="power" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Knx-LE-rhC"/>
+        <segue reference="T6b-5U-tno"/>
     </inferredMetricsTieBreakers>
 </document>

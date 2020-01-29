@@ -40,7 +40,7 @@ extension UIViewController {
         UdacityClient.getStudentLocationById() { (studentInformation, error) in
             activityIndicator.stopAnimating()
             if let studentInformation = studentInformation {
-                ControllersUtil.presentConfirmationAlert(controller: self, title: Constants.confirmTitle, message: "Are you sure you wan't to add new location?, you already added in the past") { (okPressed, cancelPressed) in
+                ControllersUtil.presentConfirmationAlert(controller: self, title: Constants.confirmTitle, message: Constants.locationAlreadyAdded) { (okPressed, cancelPressed) in
                     if (cancelPressed) {
                         return
                     } else {

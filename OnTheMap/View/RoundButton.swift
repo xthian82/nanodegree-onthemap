@@ -15,8 +15,6 @@ class RoundButton: UIButton {
     
         layer.cornerRadius = 5
         tintColor = UIColor.white
-        
         backgroundColor = UIColor.systemBlue
-        
     }
 }

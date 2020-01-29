@@ -92,6 +92,7 @@ class UdacityClient {
         }
     }
     
+    // get the accountId
     class func getUserData(completion: @escaping (UserData?, Error?) -> Void) {
         let body: EmptyBody? = nil
 
@@ -109,6 +110,7 @@ class UdacityClient {
         }
     }
     
+    // get lasts locations
     class func getStudentLocations(completion: @escaping ([StudentInformation], Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocations(orderBy: "-updatedAt", limitSize: 100).url,
@@ -123,6 +125,7 @@ class UdacityClient {
         }
     }
     
+    // get location added by the user
     class func getStudentLocationById(completion: @escaping (StudentInformation?, Error?) -> Void) {
         let body: EmptyBody? = nil
         HttpUtil.taskForHttpRequest(url: Endpoints.studentLocation(userId: Auth.accountId).url,
@@ -140,6 +143,7 @@ class UdacityClient {
         }
     }
     
+    // add location for the user
     class func addStudentLocation(studentLocation: StudentLocationRequest,
                                   completion: @escaping (AddStudentResponse?, Error?) -> Void) {
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
@@ -155,6 +159,7 @@ class UdacityClient {
        }
     }
     
+    // update location for the user
     class func updateStudentLocation(studentLocation: StudentLocationRequest,
                                      completion: @escaping (UpdateStudentResponse?, Error?) -> Void) {
         
