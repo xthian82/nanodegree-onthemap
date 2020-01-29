@@ -27,12 +27,12 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
          super.viewWillDisappear(animated)
-         //self.tabBarController?.tabBar.isHidden = false
+         self.tabBarController?.tabBar.isHidden = false
     }
     
     //MARK: Map Functions
