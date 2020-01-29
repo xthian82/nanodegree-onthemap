@@ -5,9 +5,6 @@
 //  Created by Cristhian Recalde on 1/28/20.
 //  Copyright © 2020 Cristhian Recalde. All rights reserved.
 //
-
-import Foundation
-
 struct Errors {
 
     static let mainTitle = "Error"
@@ -18,4 +15,5 @@ struct Errors {
     static let loginErrorTitle = "Login Error"
     static let requiredLoginFields = "Plase add email and password"
     static let requiredLocationFields = "Plase add location and media url"
+    static let facebookLoginProblem = "Cannot login to Facebook"
 }

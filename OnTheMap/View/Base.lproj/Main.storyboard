@@ -94,16 +94,35 @@
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dpI-81-YwH">
                                 <rect key="frame" x="197" y="546" width="20" height="20"/>
                             </activityIndicatorView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="n6y-JM-lTk" customClass="RoundButton" customModule="OnTheMap" customModuleProvider="target">
+                                <rect key="frame" x="32" y="812" width="350" height="35"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="D4c-0i-vTF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <inset key="imageEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                <state key="normal" title="Facebook Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginViaWebsiteTapped" destination="8ky-GS-VSd" eventType="touchUpInside" id="XAl-Dn-GQw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="dpI-81-YwH" firstAttribute="centerX" secondItem="bcJ-YZ-SQy" secondAttribute="centerX" id="1Ip-Ep-BoJ"/>
+                            <constraint firstItem="n6y-JM-lTk" firstAttribute="leading" secondItem="bcJ-YZ-SQy" secondAttribute="leading" constant="32" id="B08-ea-53c"/>
                             <constraint firstItem="dpI-81-YwH" firstAttribute="top" secondItem="9Wa-tP-vpF" secondAttribute="bottom" constant="12" id="GYh-Ki-UlL"/>
                             <constraint firstItem="GKb-gm-E2p" firstAttribute="centerX" secondItem="bcJ-YZ-SQy" secondAttribute="centerX" id="Gn0-JJ-fFv"/>
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="trailing" secondItem="bcJ-YZ-SQy" secondAttribute="trailing" constant="-32" id="K6f-fn-0lT"/>
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="leading" secondItem="bcJ-YZ-SQy" secondAttribute="leading" constant="32" id="Rxk-pb-oqv"/>
                             <constraint firstItem="9Wa-tP-vpF" firstAttribute="centerY" secondItem="bcJ-YZ-SQy" secondAttribute="centerY" id="gug-Bi-uDQ"/>
+                            <constraint firstItem="n6y-JM-lTk" firstAttribute="bottom" secondItem="bcJ-YZ-SQy" secondAttribute="bottom" constant="-15" id="imw-fA-Uwc"/>
                             <constraint firstItem="GKb-gm-E2p" firstAttribute="bottom" secondItem="9Wa-tP-vpF" secondAttribute="top" constant="-12" id="p2J-ud-Ur5"/>
+                            <constraint firstItem="n6y-JM-lTk" firstAttribute="trailing" secondItem="bcJ-YZ-SQy" secondAttribute="trailing" constant="-32" id="qUZ-HT-MdN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bcJ-YZ-SQy"/>
                     </view>
@@ -111,6 +130,7 @@
                         <outlet property="activityIndicator" destination="dpI-81-YwH" id="WDJ-yL-RGv"/>
                         <outlet property="emailTextField" destination="hXl-Ns-snN" id="JO1-xp-nMa"/>
                         <outlet property="loginButton" destination="RMa-5E-npd" id="bEc-Ft-dN2"/>
+                        <outlet property="loginFacebookButton" destination="n6y-JM-lTk" id="fVM-Vm-Rlw"/>
                         <outlet property="passwordTextField" destination="klq-Fc-qOc" id="uiZ-wB-mSH"/>
                         <segue destination="yfJ-6e-6rc" kind="presentation" identifier="loggedIn" modalPresentationStyle="fullScreen" id="hch-8K-ZFb"/>
                     </connections>

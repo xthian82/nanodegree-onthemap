@@ -24,16 +24,36 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>py.com.snowtech.TextFieldChallenge</string>
+			<string>2171387736298221</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb2171387736298221</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>py.com.snowtech.mapnano</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>onthemap</string>
-				<string>main-screen</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>2171387736298221</string>
+	<key>FacebookDisplayName</key>
+	<string>OnTheMap</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UIApplicationSceneManifest</key>

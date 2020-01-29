@@ -12,8 +12,8 @@ import UIKit
 class TableViewController: UITableViewController {
     
     //MARK: Properties
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var locations: [StudentInformation] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -42,7 +42,7 @@ class TableViewController: UITableViewController {
     }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        logginOut(sender, activityIndicator: activityIndicator)
+        logginOut(sender, facebookLogin: appDelegate.isFacebookLogin, activityIndicator: activityIndicator)
     }
     
     @IBAction func postLocationTableTapped(_ sender: UIBarButtonItem) {

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
 
 class LoginViewController: UIViewController {
     
@@ -17,6 +19,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginFacebookButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var fbLogin = false
+
     //MARK: Window functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,7 @@ class LoginViewController: UIViewController {
     
     //MARK: Button Actions
     @IBAction func loginTapped(_ sender: UIButton) {
+        
         if self.emailTextField.text?.count == 0 || self.passwordTextField.text?.count == 0 {
             ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLoginFields)
             return
@@ -41,11 +46,22 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginViaWebsiteTapped() {
         setLoggingIn(true)
-        /*TMDBClient.getRequestToken { (success, error) in
-            if success {
-                UIApplication.shared.open(TMDBClient.Endpoints.webAuth.url, options: [:], completionHandler: nil)
+        fbLogin = true
+        let manager = LoginManager()
+        manager.logIn(permissions: [.publicProfile, .email], viewController: self) { (result) in
+            self.setLoggingIn(false)
+            
+            switch result {
+            case .cancelled:
+                ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: "User cancelled")
+            case .failed(let error):
+                ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
+            case .success(_, _, let accessToken):
+                UdacityClient.setAuthData(accountId: accessToken.userID, sessionId: accessToken.tokenString,
+                                          firstName: Profile.current?.firstName, lastName: Profile.current?.lastName)
+                UdacityClient.getStudentLocations(completion: self.handleDataResponse(locations:error:))
             }
-        }*/
+        }
     }
     
     @IBAction func signupTapped() {
@@ -54,12 +70,12 @@ class LoginViewController: UIViewController {
     
     //MARK: Delegate API functions
     func handleLoginResponse(success: Bool, error: Error?) {
-           if success {
-               UdacityClient.getUserData(completion: self.handleSessionResponse(userData:error:))
-           } else {
+        if success {
+            UdacityClient.getUserData(completion: self.handleSessionResponse(userData:error:))
+        } else {
             setLoggingIn(false)
             ControllersUtil.showAlert(controller: self, title: Errors.loginErrorTitle, message: error?.localizedDescription ?? "")
-           }
+        }
     }
     
     func handleSessionResponse(userData: UserData?, error: Error?) {
@@ -78,9 +94,9 @@ class LoginViewController: UIViewController {
             return
         }
         setLoggingIn(false)
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.locations = locations
+        appDelegate.isFacebookLogin = fbLogin
         clearTextFields()
         self.performSegue(withIdentifier: Constants.loggedInSegue, sender: nil)
     }
@@ -95,7 +111,7 @@ class LoginViewController: UIViewController {
         self.emailTextField.isEnabled = !loggingIn
         self.passwordTextField.isEnabled = !loggingIn
         self.loginButton.isEnabled = !loggingIn
-        //self.loginFacebookButton.isEnabled = !loggingIn
+        self.loginFacebookButton.isEnabled = !loggingIn
     }
     
     func clearTextFields() {

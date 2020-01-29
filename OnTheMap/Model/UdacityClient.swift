@@ -87,10 +87,7 @@ class UdacityClient {
                 return
             }
 
-            Auth.accountId = ""
-            Auth.sessionId = ""
-            Auth.firstName = ""
-            Auth.lastName = ""
+            setAuthData(accountId: nil, sessionId: nil, firstName: nil, lastName: nil)
             completion(nil)
         }
     }
@@ -174,5 +171,12 @@ class UdacityClient {
                        
            completion(responseObject, nil)
        }
+    }
+    
+    class func setAuthData(accountId: String?, sessionId: String?, firstName: String?, lastName: String?) {
+        Auth.accountId = accountId ?? ""
+        Auth.sessionId = sessionId ?? ""
+        Auth.firstName = firstName ?? ""
+        Auth.lastName = lastName ?? ""
     }
 }

@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import FacebookCore
+import FacebookLogin
 
 extension UIViewController {
     
-    @IBAction func logginOut(_ sender: UIBarButtonItem, activityIndicator: UIActivityIndicatorView) {
+    func logginOut(_ sender: UIBarButtonItem, facebookLogin: Bool, activityIndicator: UIActivityIndicatorView) {
         activityIndicator.startAnimating()
-        UdacityClient.logout { (error) in
+        if facebookLogin {
+            LoginManager().logOut()
             activityIndicator.stopAnimating()
-            if let error = error {
-                ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
-            }
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
+            }
+        } else {
+            UdacityClient.logout { (error) in
+                activityIndicator.stopAnimating()
+                if let error = error {
+                    ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
+                }
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
         }
     }
@@ -30,7 +40,7 @@ extension UIViewController {
         UdacityClient.getStudentLocationById() { (studentInformation, error) in
             activityIndicator.stopAnimating()
             if let studentInformation = studentInformation {
-                ControllersUtil.presentConfirmationAlert(controller: self, title: "Confirm", message: "Are you sure you wan't to add new location?, you already added in the past") { (okPressed, cancelPressed) in
+                ControllersUtil.presentConfirmationAlert(controller: self, title: Constants.confirmTitle, message: "Are you sure you wan't to add new location?, you already added in the past") { (okPressed, cancelPressed) in
                     if (cancelPressed) {
                         return
                     } else {

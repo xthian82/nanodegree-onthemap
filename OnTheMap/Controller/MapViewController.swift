@@ -13,9 +13,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var locations: [StudentInformation] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
     var annotations = [MKPointAnnotation]()
@@ -44,7 +43,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        logginOut(sender, activityIndicator: activityIndicator)
+        logginOut(sender, facebookLogin: appDelegate.isFacebookLogin, activityIndicator: activityIndicator)
     }
     
     @IBAction func postLocationMapTapped(_ sender: UIBarButtonItem) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookCore
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -47,18 +48,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        
-        if components?.scheme == "themoviemanager" && components?.path == "authenticate" {
-            let loginVC = window?.rootViewController as! LoginViewController
-            
-            //TMDBClient.getNewSession(completion: loginVC.handleSessionResponse(success:error:))
+    
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        let openURLContext = Array(URLContexts).first
+        if openURLContext != nil {
+            if let URL = openURLContext?.url, let annotation = openURLContext?.options.annotation {
+                ApplicationDelegate.shared.application(UIApplication.shared, open: URL, sourceApplication: openURLContext?.options.sourceApplication, annotation: annotation)
+            }
         }
-        
-        return true
     }
-
 }
 
