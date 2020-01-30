@@ -29,7 +29,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadLocations()
-        mapView!.reloadInputViews()
         self.tabBarController?.tabBar.isHidden = false
     }
     
@@ -82,7 +81,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         self.mapView.removeAnnotations(annotations)
         annotations.removeAll()
         (UIApplication.shared.delegate as! AppDelegate).locations = locations
-        self.viewWillAppear(true)
+        loadLocations()
     }
     
     func getAnnotationFromInformation(_ studentLocation: StudentInformation) -> MKPointAnnotation {

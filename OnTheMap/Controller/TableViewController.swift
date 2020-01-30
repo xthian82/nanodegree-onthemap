@@ -27,7 +27,6 @@ class TableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
-        tableView!.reloadData()
     }
     
     //MARK: Action Buttons
@@ -39,7 +38,7 @@ class TableViewController: UITableViewController {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
                 (UIApplication.shared.delegate as! AppDelegate).locations = locations
-                self.viewWillAppear(true)
+                self.tableView!.reloadData()
             }
         }
     }
