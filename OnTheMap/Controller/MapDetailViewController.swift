@@ -15,9 +15,7 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
     @IBOutlet weak var mapView: MKMapView!
     var matchingItems:[MKMapItem] = []
     var currentLocation: MKPointAnnotation?
-    var location = ""
-    var mediaURL = ""
-    var isUpdate = false
+    var dataDto: RequestDto?
     @IBOutlet weak var finishButton: RoundButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -25,7 +23,7 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        self.finishButton.isEnabled = false
+        enableSubmit(false)
         searchPlace()
     }
     
@@ -47,7 +45,7 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
     //MARK: Action Buttons
     func searchPlace() {
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = self.location
+        request.naturalLanguageQuery = self.dataDto?.locationMap
         request.region = self.mapView.region
 
         let search = MKLocalSearch(request: request)
@@ -56,7 +54,7 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
                 ControllersUtil.presentAlert(controller: self, title: Errors.locationErrorTitle, message: Errors.findLocationProblem)
                 return
             }
-            self.finishButton.isEnabled = true
+            self.enableSubmit(true)
             self.currentLocation = self.getAnnotationFromMapItem(response.mapItems[0])
             self.navigateToLocation(annotation: self.currentLocation!)
         }
@@ -69,17 +67,20 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
     }
     
     @IBAction func postLocationToUdacity() {
+        enableSubmit(false)
         self.activityIndicator.startAnimating()
-        if isUpdate {
-            UdacityClient.updateStudentLocation(lat: currentLocation!.coordinate.latitude, lon: currentLocation!.coordinate.longitude, map: location, url: mediaURL, completion: self.handleLocationResponse(error:))
+        let objectId = dataDto?.objectId ?? ""
+        if objectId.count > 0 {
+            UdacityClient.updateStudentLocation(request: dataDto!, completion: self.handleLocationResponse(error:))
         } else {
-            UdacityClient.addStudentLocation(lat: currentLocation!.coordinate.latitude, lon: currentLocation!.coordinate.longitude, map: location, url: mediaURL, completion: self.handleLocationResponse(error:))
+            UdacityClient.addStudentLocation(request: dataDto!, completion: self.handleLocationResponse(error:))
         }
     }
     
     //MARK: Helper Methods
     func handleLocationResponse(error: ErrorResponse?) {
         self.activityIndicator.stopAnimating()
+        enableSubmit(true)
         if let error = error {
             ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.error)
         } else {
@@ -91,6 +92,8 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
         self.mapView.addAnnotation(annotation)
         self.mapView.setCenter(annotation.coordinate, animated: true)
         self.mapView.selectAnnotation(annotation, animated: true)
+        self.dataDto!.longitude = annotation.coordinate.longitude
+        self.dataDto!.latitude = annotation.coordinate.latitude
     }
     
     func getAnnotationFromMapItem(_ mapItem: MKMapItem) -> MKPointAnnotation {
@@ -98,5 +101,9 @@ class MapDetailViewController : UIViewController, MKMapViewDelegate, UINavigatio
         annotation.coordinate = mapItem.placemark.coordinate
         annotation.title = mapItem.name
         return annotation
+    }
+    
+    func enableSubmit(_ enabled: Bool) {
+        self.finishButton.isEnabled = enabled
     }
 }

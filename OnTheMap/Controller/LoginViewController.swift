@@ -13,17 +13,20 @@ import FacebookLogin
 class LoginViewController: UIViewController {
     
     //MARK: Properties
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginFacebookButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    var fbLogin = false
+    let textDelete = TextFieldDelegate()
 
     //MARK: Window functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        emailTextField.delegate = textDelete
+        passwordTextField.delegate = textDelete
         clearTextFields()
     }
     
@@ -34,23 +37,25 @@ class LoginViewController: UIViewController {
     
     //MARK: Button Actions
     @IBAction func loginTapped(_ sender: UIButton) {
-        
+        // simple validation of required values
         if self.emailTextField.text?.count == 0 || self.passwordTextField.text?.count == 0 {
             ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLoginFields)
             return
         }
         setLoggingIn(true)
+        appDelegate.loginType = .UDACITY
         UdacityClient.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "",
-                    completion: self.handleLoginResponse(success:error:))
+                    completion: self.handleUdacityLoginResponse(success:error:))
     }
     
-    @IBAction func loginViaWebsiteTapped() {
+    @IBAction func facebookLoginTapped() {
         setLoggingIn(true)
-        fbLogin = true
         let manager = LoginManager()
-        manager.logIn(permissions: [.publicProfile, .email], viewController: self) { (result) in
+        manager.logIn(permissions: [.publicProfile, .email], viewController: self, completion: self.handleFaceebookLoginResponse(result:)) /*{ (result) in
+            // setup notification and type
             self.setLoggingIn(false)
-            
+            self.appDelegate.loginType = .FACEBOOK
+            //handle reponse
             switch result {
             case .cancelled:
                 ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: "User cancelled")
@@ -61,7 +66,7 @@ class LoginViewController: UIViewController {
                                           firstName: Profile.current?.firstName, lastName: Profile.current?.lastName)
                 UdacityClient.getStudentLocations(completion: self.handleDataResponse(locations:error:))
             }
-        }
+        }*/
     }
     
     @IBAction func signupTapped() {
@@ -69,7 +74,7 @@ class LoginViewController: UIViewController {
     }
     
     //MARK: Delegate API functions
-    func handleLoginResponse(success: Bool, error: Error?) {
+    func handleUdacityLoginResponse(success: Bool, error: Error?) {
         if success {
             UdacityClient.getUserData(completion: self.handleSessionResponse(userData:error:))
         } else {
@@ -94,11 +99,25 @@ class LoginViewController: UIViewController {
             return
         }
         setLoggingIn(false)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.locations = locations
-        appDelegate.isFacebookLogin = fbLogin
         clearTextFields()
         self.performSegue(withIdentifier: Constants.loggedInSegue, sender: nil)
+    }
+    
+    func handleFaceebookLoginResponse(result: LoginResult) {
+        self.setLoggingIn(false)
+        self.appDelegate.loginType = .FACEBOOK
+        //handle reponse
+        switch result {
+        case .cancelled:
+            ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: Errors.requestCancelledByUser)
+        case .failed(let error):
+            ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
+        case .success(_, _, let accessToken):
+            UdacityClient.setAuthData(accountId: accessToken.userID, sessionId: accessToken.tokenString,
+                                      firstName: Profile.current?.firstName, lastName: Profile.current?.lastName)
+            UdacityClient.getStudentLocations(completion: self.handleDataResponse(locations:error:))
+        }
     }
     
     //MARK: Helper methods

@@ -17,4 +17,5 @@ struct Errors {
     static let requiredLocationFields = "Plase add location and media url"
     static let facebookLoginProblem = "Cannot login to Facebook"
     static let findLocationProblem = "Location not found"
+    static let requestCancelledByUser = "Request cancelled by the user"
 }

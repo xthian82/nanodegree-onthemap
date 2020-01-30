@@ -13,8 +13,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var locations: [StudentInformation] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
     var annotations = [MKPointAnnotation]()
@@ -24,17 +24,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.mapView.delegate = self
-        loadLocations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadLocations()
         mapView!.reloadInputViews()
         self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func reloadMap() {
+        activityIndicator.startAnimating()
         UdacityClient.getStudentLocations() { (locations, error) in
+            self.activityIndicator.stopAnimating()
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
@@ -44,7 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        logginOut(sender, facebookLogin: appDelegate.isFacebookLogin, activityIndicator: activityIndicator)
+        logginOut(sender, activityIndicator: activityIndicator)
     }
     
     @IBAction func postLocationMapTapped(_ sender: UIBarButtonItem) {
@@ -79,10 +81,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func reloadLocations() {
         self.mapView.removeAnnotations(annotations)
         annotations.removeAll()
-        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.locations = locations
-        loadLocations()
-        self.mapView.reloadInputViews()
+        (UIApplication.shared.delegate as! AppDelegate).locations = locations
+        self.viewWillAppear(true)
     }
     
     func getAnnotationFromInformation(_ studentLocation: StudentInformation) -> MKPointAnnotation {

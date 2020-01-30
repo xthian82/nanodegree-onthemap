@@ -13,20 +13,21 @@ class PostLocationViewController: UIViewController {
     @IBOutlet weak var locationTextfield: UITextField!
     @IBOutlet weak var mediaURLTextfield: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
+    let textDelegate = TextFieldDelegate()
     
-    var location: String?
-    var mediaURL: String?
-    var isUpdate = false
+    var dataDto: RequestDto?
     
     //MARK: Window Actions
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationTextfield.delegate = textDelegate
+        mediaURLTextfield.delegate = textDelegate
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        locationTextfield.text = location ?? ""
-        mediaURLTextfield.text = mediaURL ?? ""
+        locationTextfield.text = dataDto?.locationMap ?? ""
+        mediaURLTextfield.text = dataDto?.mediaURL ?? ""
         self.tabBarController?.tabBar.isHidden = true
     }
     
@@ -48,9 +49,7 @@ class PostLocationViewController: UIViewController {
         }
 
         let mapDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: Constants.searchLocationSeugue) as! MapDetailViewController
-        mapDetailViewController.location = self.locationTextfield.text!
-        mapDetailViewController.mediaURL = self.mediaURLTextfield.text!
-        mapDetailViewController.isUpdate = self.isUpdate
+        mapDetailViewController.dataDto = RequestDto(latitude: 0.0, longitude: 0.0, mediaURL: self.mediaURLTextfield.text!, locationMap: self.locationTextfield.text!, objectId: self.dataDto?.objectId)
         self.navigationController!.pushViewController(mapDetailViewController, animated: true)
     }
     

@@ -12,23 +12,28 @@ import FacebookLogin
 
 extension UIViewController {
     
-    func logginOut(_ sender: UIBarButtonItem, facebookLogin: Bool, activityIndicator: UIActivityIndicatorView) {
-        activityIndicator.startAnimating()
-        if facebookLogin {
+    private func handleLogout(type: LoginType, finish: @escaping (Error?) -> Void) {
+        switch type {
+        case .FACEBOOK:
             LoginManager().logOut()
+            finish(nil)
+        case .UDACITY:
+            UdacityClient.logout(completion: finish)
+        }
+    }
+    
+    func logginOut(_ sender: UIBarButtonItem, activityIndicator: UIActivityIndicatorView) {
+        let loginType = (UIApplication.shared.delegate as! AppDelegate).loginType
+        activityIndicator.startAnimating()
+        
+        handleLogout(type: loginType) { (error) in
             activityIndicator.stopAnimating()
+            if let error = error {
+                ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
+            }
+            
             DispatchQueue.main.async {
                 self.dismiss(animated: true, completion: nil)
-            }
-        } else {
-            UdacityClient.logout { (error) in
-                activityIndicator.stopAnimating()
-                if let error = error {
-                    ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
-                }
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                }
             }
         }
     }
@@ -44,9 +49,7 @@ extension UIViewController {
                     if (cancelPressed) {
                         return
                     } else {
-                        locationController.mediaURL = studentInformation.mediaURL
-                        locationController.location = studentInformation.mapString
-                        locationController.isUpdate = true
+                        locationController.dataDto = RequestDto(latitude: 0.0, longitude: 0.0, mediaURL: studentInformation.mediaURL, locationMap: studentInformation.mapString, objectId: studentInformation.objectId)
                         self.navigationController!.pushViewController(locationController, animated: true)
                     }
                 }

@@ -12,10 +12,11 @@ import UIKit
 class TableViewController: UITableViewController {
     
     //MARK: Properties
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var locations: [StudentInformation] {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.locations!
     }
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: Window functions
@@ -31,19 +32,20 @@ class TableViewController: UITableViewController {
     
     //MARK: Action Buttons
     @IBAction func reloadInfo() {
+        activityIndicator.startAnimating()
         UdacityClient.getStudentLocations() { (locations, error) in
+            self.activityIndicator.stopAnimating()
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
-                //let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                self.appDelegate.locations = locations
-                self.tableView!.reloadData()
+                (UIApplication.shared.delegate as! AppDelegate).locations = locations
+                self.viewWillAppear(true)
             }
         }
     }
     
     @IBAction func logout(_ sender: UIBarButtonItem) {
-        logginOut(sender, facebookLogin: appDelegate.isFacebookLogin, activityIndicator: activityIndicator)
+        logginOut(sender, activityIndicator: activityIndicator)
     }
     
     @IBAction func postLocationTableTapped(_ sender: UIBarButtonItem) {

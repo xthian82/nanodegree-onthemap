@@ -13,7 +13,7 @@ import FacebookCore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var locations: [StudentInformation]?
-    var isFacebookLogin: Bool = false
+    var loginType = LoginType.UDACITY
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         ApplicationDelegate.shared.application(application,didFinishLaunchingWithOptions: launchOptions)

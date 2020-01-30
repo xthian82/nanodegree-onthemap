@@ -52,6 +52,9 @@
 		C47E138223E10D350044EC42 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C47E138123E10D350044EC42 /* FacebookLogin */; };
 		C47E138423E10D350044EC42 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C47E138323E10D350044EC42 /* FacebookCore */; };
 		C485BAB923E2631C00D5CF07 /* ValidatorsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */; };
+		C485BABB23E2865800D5CF07 /* RequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BABA23E2865800D5CF07 /* RequestDto.swift */; };
+		C485BABD23E28E6800D5CF07 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BABC23E28E6800D5CF07 /* LoginType.swift */; };
+		C485BAC223E29CA400D5CF07 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BAC123E29CA400D5CF07 /* TextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +136,9 @@
 		C47E136C23DFF7E40044EC42 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C47E136E23DFFE510044EC42 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
 		C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsUtil.swift; sourceTree = "<group>"; };
+		C485BABA23E2865800D5CF07 /* RequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDto.swift; sourceTree = "<group>"; };
+		C485BABC23E28E6800D5CF07 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		C485BAC123E29CA400D5CF07 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,8 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C47E132423DD5CFC0044EC42 /* Model */,
-				C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */,
-				C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */,
+				C485BAC023E29C8700D5CF07 /* Delegate */,
 				C47E131D23DAA08A0044EC42 /* Controller */,
 				C47E131E23DAA0B00044EC42 /* View */,
 				C47E12F823DA9FB20044EC42 /* LaunchScreen.storyboard */,
@@ -247,6 +252,7 @@
 				C47E134B23DDF07C0044EC42 /* Util */,
 				C47E136823DFF2930044EC42 /* Constants.swift */,
 				C47E136C23DFF7E40044EC42 /* Errors.swift */,
+				C485BABC23E28E6800D5CF07 /* LoginType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,6 +260,7 @@
 		C47E132723DD60F40044EC42 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				C485BABA23E2865800D5CF07 /* RequestDto.swift */,
 				C47E132823DD61070044EC42 /* SessionRequest.swift */,
 				C47E132A23DD615D0044EC42 /* LoginData.swift */,
 				C47E135123DE02160044EC42 /* StudentLocationRequest.swift */,
@@ -319,6 +326,16 @@
 				C47E136E23DFFE510044EC42 /* LogoutResponse.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		C485BAC023E29C8700D5CF07 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				C47E12ED23DA9FB00044EC42 /* AppDelegate.swift */,
+				C47E12EF23DA9FB00044EC42 /* SceneDelegate.swift */,
+				C485BAC123E29CA400D5CF07 /* TextFieldDelegate.swift */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -477,10 +494,12 @@
 				C47E134623DDEC7F0044EC42 /* HttpUtil.swift in Sources */,
 				C47E133223DD63A80044EC42 /* Session.swift in Sources */,
 				C47E136523DFC8C20044EC42 /* LoginViewController.swift in Sources */,
+				C485BABD23E28E6800D5CF07 /* LoginType.swift in Sources */,
 				86AB973923E0AB7200CEEE49 /* RoundButton.swift in Sources */,
 				C47E134123DDE34A0044EC42 /* EmailPreference.swift in Sources */,
 				C47E132B23DD615D0044EC42 /* LoginData.swift in Sources */,
 				C485BAB923E2631C00D5CF07 /* ValidatorsUtil.swift in Sources */,
+				C485BABB23E2865800D5CF07 /* RequestDto.swift in Sources */,
 				C47E133F23DDE1460044EC42 /* Email.swift in Sources */,
 				C47E136123DFC7620044EC42 /* StudentInformation.swift in Sources */,
 				C47E133D23DDDC3F0044EC42 /* RefKey.swift in Sources */,
@@ -497,6 +516,7 @@
 				86AB973B23E1F37700CEEE49 /* MapDetailViewController.swift in Sources */,
 				C47E133B23DDDB8D0044EC42 /* Permission.swift in Sources */,
 				C47E134A23DDEE360044EC42 /* HttpKeys.swift in Sources */,
+				C485BAC223E29CA400D5CF07 /* TextFieldDelegate.swift in Sources */,
 				C47E135823DE25F00044EC42 /* EmptyBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,7 +29,7 @@ class UdacityClient {
         case studentLocations(orderBy: String, limitSize: Int)
         case studentLocation(userId: String)
         case addStudentLocation
-        case updateStudentLocation(userId: String)
+        case updateStudentLocation(objectId: String)
         
         var stringValue: String {
             switch self {
@@ -43,8 +43,8 @@ class UdacityClient {
                 return Endpoints.base + "/StudentLocation?uniqueKey=\(userId)&limit=1"
             case .addStudentLocation:
                 return Endpoints.base + "/StudentLocation"
-            case .updateStudentLocation(let userId):
-                return Endpoints.base + "/StudentLocation/\(userId)"
+            case .updateStudentLocation(let objectId):
+                return Endpoints.base + "/StudentLocation/\(objectId)"
             }
         }
         
@@ -144,11 +144,12 @@ class UdacityClient {
     }
     
     // add location for the user
-    class func addStudentLocation(lat: Double, lon: Double, map: String, url: String,
-                                  completion: @escaping (ErrorResponse?) -> Void) {
+    class func addStudentLocation(request: RequestDto, completion: @escaping (ErrorResponse?) -> Void) {
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
-        let studentLocation = StudentLocationRequest(firstName: Auth.firstName, lastName: Auth.lastName, latitude: lat,
-                                                     longitude: lon, mapString: map, mediaURL: url, uniqueKey: Auth.accountId)
+        let studentLocation = StudentLocationRequest(firstName: Auth.firstName, lastName: Auth.lastName,
+                                                     latitude: request.latitude, longitude: request.longitude,
+                                                     mapString: request.locationMap, mediaURL: request.mediaURL,
+                                                     uniqueKey: Auth.accountId)
         HttpUtil.taskForHttpRequest(url: Endpoints.addStudentLocation.url, method: .POST, headers: headers, body: studentLocation, responseType: AddStudentResponse.self, skipSize: nil) { (response, error) in
                                        
             guard let responseObject = response else {
@@ -166,15 +167,16 @@ class UdacityClient {
     }
     
     // update location for the user
-    class func updateStudentLocation(lat: Double, lon: Double, map: String, url: String,
-                                     completion: @escaping (ErrorResponse?) -> Void) {
+    class func updateStudentLocation(request: RequestDto, completion: @escaping (ErrorResponse?) -> Void) {
         
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
+
         let studentLocation = StudentLocationRequest(firstName: Auth.firstName, lastName: Auth.lastName,
-                                                     latitude: lat, longitude: lon, mapString: map, mediaURL: url,
+                                                     latitude: request.latitude, longitude: request.longitude,
+                                                     mapString: request.locationMap, mediaURL: request.mediaURL,
                                                      uniqueKey: Auth.accountId)
         
-        HttpUtil.taskForHttpRequest(url: Endpoints.updateStudentLocation(userId: Auth.accountId).url,
+        HttpUtil.taskForHttpRequest(url: Endpoints.updateStudentLocation(objectId: request.objectId!).url,
                                     method: .PUT, headers: headers, body: studentLocation,
                                     responseType: UpdateStudentResponse.self, skipSize: nil) {(response, error) in
                                        
