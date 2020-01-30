@@ -25,7 +25,7 @@ class TableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //self.navigationController?.isToolbarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         tableView!.reloadData()
     }
     
@@ -35,8 +35,8 @@ class TableViewController: UITableViewController {
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.locations = locations
+                //let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                self.appDelegate.locations = locations
                 self.tableView!.reloadData()
             }
         }

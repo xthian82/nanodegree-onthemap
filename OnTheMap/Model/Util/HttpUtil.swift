@@ -55,10 +55,6 @@ class HttpUtil {
                 newData = data
             }
             
-            //Debbugin purposes, delete later
-            //let rawString = String(data: newData, encoding: .utf8)!
-            //print("rawVAl ===> \(rawString)")
-            
             // parse the json received
             let decoder = JSONDecoder()
             do {

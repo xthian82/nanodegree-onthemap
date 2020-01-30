@@ -46,6 +46,7 @@ extension UIViewController {
                     } else {
                         locationController.mediaURL = studentInformation.mediaURL
                         locationController.location = studentInformation.mapString
+                        locationController.isUpdate = true
                         self.navigationController!.pushViewController(locationController, animated: true)
                     }
                 }

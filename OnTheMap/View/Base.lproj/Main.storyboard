@@ -341,12 +341,18 @@
                                     <action selector="postLocationToUdacity" destination="vvE-Vj-YLT" eventType="touchUpInside" id="iEg-Ad-Alb"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="AVl-0H-p7K">
+                                <rect key="frame" x="178" y="447" width="37" height="37"/>
+                                <color key="color" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="vC3-bk-8H3" firstAttribute="trailing" secondItem="Vdn-hN-w5e" secondAttribute="trailing" constant="-12" id="5Gi-af-TzI"/>
                             <constraint firstItem="vC3-bk-8H3" firstAttribute="leading" secondItem="Vdn-hN-w5e" secondAttribute="leading" constant="12" id="CPb-Dt-gMK"/>
                             <constraint firstItem="vC3-bk-8H3" firstAttribute="bottom" secondItem="Vdn-hN-w5e" secondAttribute="bottom" constant="-12" id="HmU-Qj-Ear"/>
+                            <constraint firstItem="AVl-0H-p7K" firstAttribute="centerX" secondItem="vC3-bk-8H3" secondAttribute="centerX" id="N3J-VO-Pf3"/>
+                            <constraint firstItem="AVl-0H-p7K" firstAttribute="centerY" secondItem="vC3-bk-8H3" secondAttribute="centerY" id="glf-W1-Id6"/>
                             <constraint firstItem="T7k-cu-xbG" firstAttribute="bottom" secondItem="vC3-bk-8H3" secondAttribute="bottom" constant="-10" id="iVr-oR-kIf"/>
                             <constraint firstItem="vC3-bk-8H3" firstAttribute="top" secondItem="Vdn-hN-w5e" secondAttribute="top" constant="12" id="ijH-X8-pn1"/>
                             <constraint firstItem="T7k-cu-xbG" firstAttribute="trailing" secondItem="Vdn-hN-w5e" secondAttribute="trailing" constant="-18" id="vde-kc-1GU"/>
@@ -362,6 +368,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="AVl-0H-p7K" id="7a0-vD-yTK"/>
+                        <outlet property="finishButton" destination="T7k-cu-xbG" id="5cG-le-BMf"/>
                         <outlet property="mapView" destination="vC3-bk-8H3" id="XAs-ZT-cLB"/>
                     </connections>
                 </viewController>

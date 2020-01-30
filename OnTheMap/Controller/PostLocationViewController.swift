@@ -16,6 +16,7 @@ class PostLocationViewController: UIViewController {
     
     var location: String?
     var mediaURL: String?
+    var isUpdate = false
     
     //MARK: Window Actions
     override func viewDidLoad() {
@@ -41,9 +42,15 @@ class PostLocationViewController: UIViewController {
             return
         }
 
+        if !ValidatorsUtil.isValidUrl(urlLink: mediaURLTextfield.text) {
+            ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "Invalid url")
+            return
+        }
+
         let mapDetailViewController = self.storyboard!.instantiateViewController(withIdentifier: Constants.searchLocationSeugue) as! MapDetailViewController
         mapDetailViewController.location = self.locationTextfield.text!
         mapDetailViewController.mediaURL = self.mediaURLTextfield.text!
+        mapDetailViewController.isUpdate = self.isUpdate
         self.navigationController!.pushViewController(mapDetailViewController, animated: true)
     }
     

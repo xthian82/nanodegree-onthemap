@@ -51,6 +51,7 @@
 		C47E138023E10D350044EC42 /* FacebookShare in Frameworks */ = {isa = PBXBuildFile; productRef = C47E137F23E10D350044EC42 /* FacebookShare */; };
 		C47E138223E10D350044EC42 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = C47E138123E10D350044EC42 /* FacebookLogin */; };
 		C47E138423E10D350044EC42 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = C47E138323E10D350044EC42 /* FacebookCore */; };
+		C485BAB923E2631C00D5CF07 /* ValidatorsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,7 @@
 		C47E136823DFF2930044EC42 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C47E136C23DFF7E40044EC42 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		C47E136E23DFFE510044EC42 /* LogoutResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutResponse.swift; sourceTree = "<group>"; };
+		C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +294,7 @@
 				C47E134723DDED3E0044EC42 /* HttpMethodType.swift */,
 				C47E134923DDEE360044EC42 /* HttpKeys.swift */,
 				C47E135A23DE432A0044EC42 /* ControllersUtil.swift */,
+				C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				86AB973923E0AB7200CEEE49 /* RoundButton.swift in Sources */,
 				C47E134123DDE34A0044EC42 /* EmailPreference.swift in Sources */,
 				C47E132B23DD615D0044EC42 /* LoginData.swift in Sources */,
+				C485BAB923E2631C00D5CF07 /* ValidatorsUtil.swift in Sources */,
 				C47E133F23DDE1460044EC42 /* Email.swift in Sources */,
 				C47E136123DFC7620044EC42 /* StudentInformation.swift in Sources */,
 				C47E133D23DDDC3F0044EC42 /* RefKey.swift in Sources */,

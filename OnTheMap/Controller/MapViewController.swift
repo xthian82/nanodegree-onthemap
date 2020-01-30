@@ -30,6 +30,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         mapView!.reloadInputViews()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func reloadMap() {
@@ -52,19 +53,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: Map Actions
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: Constants.pinId) as? MKPinAnnotationView
-
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: Constants.pinId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = .red
-            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
+        return ControllersUtil.getPinViewFromMap(mapView, annotation: annotation, identifier: Constants.pinId)
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
@@ -90,7 +79,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func reloadLocations() {
         self.mapView.removeAnnotations(annotations)
         annotations.removeAll()
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        //let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.locations = locations
         loadLocations()
         self.mapView.reloadInputViews()

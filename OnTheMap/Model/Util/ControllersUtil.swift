@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MapKit
 
 class ControllersUtil {
     
@@ -57,5 +58,21 @@ class ControllersUtil {
     class func showAlert(controller: UIViewController, title: String, message: String) {
         let alert = getDefaultAlertUI(title: title, message: message)
         controller.show(alert, sender: nil)
+    }
+    
+    //MARK: Map helpers
+    class func getPinViewFromMap(_ mapView: MKMapView, annotation: MKAnnotation, identifier: String) -> MKPinAnnotationView? {
+        var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKPinAnnotationView
+
+        if pinView == nil {
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            pinView!.canShowCallout = true
+            pinView!.pinTintColor = .red
+            pinView!.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        else {
+            pinView!.annotation = annotation
+        }
+        return pinView
     }
 }

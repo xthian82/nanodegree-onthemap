@@ -144,37 +144,51 @@ class UdacityClient {
     }
     
     // add location for the user
-    class func addStudentLocation(studentLocation: StudentLocationRequest,
-                                  completion: @escaping (AddStudentResponse?, Error?) -> Void) {
+    class func addStudentLocation(lat: Double, lon: Double, map: String, url: String,
+                                  completion: @escaping (ErrorResponse?) -> Void) {
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
-        
+        let studentLocation = StudentLocationRequest(firstName: Auth.firstName, lastName: Auth.lastName, latitude: lat,
+                                                     longitude: lon, mapString: map, mediaURL: url, uniqueKey: Auth.accountId)
         HttpUtil.taskForHttpRequest(url: Endpoints.addStudentLocation.url, method: .POST, headers: headers, body: studentLocation, responseType: AddStudentResponse.self, skipSize: nil) { (response, error) in
                                        
-           guard let responseObject = response else {
-               completion(nil, error)
+            guard let responseObject = response else {
+                completion(ErrorResponse(status: -2, error: error?.localizedDescription ?? "Something wrong happened"))
                return
-           }
-                       
-           completion(responseObject, nil)
-       }
+            }
+            
+            if responseObject.objectId.count == 0 {
+                completion(ErrorResponse(status: -1, error: "Object not created"))
+                return
+            }
+            
+            completion(nil)
+        }
     }
     
     // update location for the user
-    class func updateStudentLocation(studentLocation: StudentLocationRequest,
-                                     completion: @escaping (UpdateStudentResponse?, Error?) -> Void) {
+    class func updateStudentLocation(lat: Double, lon: Double, map: String, url: String,
+                                     completion: @escaping (ErrorResponse?) -> Void) {
         
         let headers: [String: String] = [HttpKeys.contentTypeHeader.value: HttpKeys.json.value]
+        let studentLocation = StudentLocationRequest(firstName: Auth.firstName, lastName: Auth.lastName,
+                                                     latitude: lat, longitude: lon, mapString: map, mediaURL: url,
+                                                     uniqueKey: Auth.accountId)
         
         HttpUtil.taskForHttpRequest(url: Endpoints.updateStudentLocation(userId: Auth.accountId).url,
                                     method: .PUT, headers: headers, body: studentLocation,
-                                    responseType: UpdateStudentResponse.self, skipSize: nil) { (response, error) in
+                                    responseType: UpdateStudentResponse.self, skipSize: nil) {(response, error) in
                                        
            guard let responseObject = response else {
-               completion(nil, error)
+               completion(ErrorResponse(status: -2, error: error?.localizedDescription ?? "Something wrong happened"))
+               return
+           }
+    
+           if responseObject.updatedAt.count == 0 {
+               completion(ErrorResponse(status: -1, error: "Object not updated"))
                return
            }
                        
-           completion(responseObject, nil)
+           completion(nil)
        }
     }
     
