@@ -47,15 +47,16 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="Ro7-TR-l3J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" smartInsertDeleteType="yes" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klq-Fc-qOc">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="klq-Fc-qOc">
                                         <rect key="frame" x="0.0" y="47" width="350" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="PJg-U8-EY9"/>
                                         </constraints>
-                                        <attributedString key="attributedText"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="yes" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartInsertDeleteType="no" textContentType="password"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RMa-5E-npd" customClass="RoundButton" customModule="OnTheMap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="94" width="350" height="35"/>

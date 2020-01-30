@@ -10,7 +10,7 @@ import UIKit
 import FacebookCore
 import FacebookLogin
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -20,13 +20,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var loginFacebookButton: UIButton!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    let textDelete = TextFieldDelegate()
 
     //MARK: Window functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        emailTextField.delegate = textDelete
-        passwordTextField.delegate = textDelete
+        
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         clearTextFields()
     }
     
@@ -51,26 +51,16 @@ class LoginViewController: UIViewController {
     @IBAction func facebookLoginTapped() {
         setLoggingIn(true)
         let manager = LoginManager()
-        manager.logIn(permissions: [.publicProfile, .email], viewController: self, completion: self.handleFaceebookLoginResponse(result:)) /*{ (result) in
-            // setup notification and type
-            self.setLoggingIn(false)
-            self.appDelegate.loginType = .FACEBOOK
-            //handle reponse
-            switch result {
-            case .cancelled:
-                ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: "User cancelled")
-            case .failed(let error):
-                ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
-            case .success(_, _, let accessToken):
-                UdacityClient.setAuthData(accountId: accessToken.userID, sessionId: accessToken.tokenString,
-                                          firstName: Profile.current?.firstName, lastName: Profile.current?.lastName)
-                UdacityClient.getStudentLocations(completion: self.handleDataResponse(locations:error:))
-            }
-        }*/
+        manager.logIn(permissions: [.publicProfile, .email], viewController: self, completion: self.handleFaceebookLoginResponse(result:))
     }
     
     @IBAction func signupTapped() {
         UIApplication.shared.open(URL(string: Constants.signUpLink)!, options: [:], completionHandler: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //MARK: Delegate API functions

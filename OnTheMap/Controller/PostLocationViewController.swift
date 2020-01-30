@@ -8,20 +8,20 @@
 
 import UIKit
 
-class PostLocationViewController: UIViewController {
+class PostLocationViewController: UIViewController, UITextFieldDelegate {
     //MARK: Properties
     @IBOutlet weak var locationTextfield: UITextField!
     @IBOutlet weak var mediaURLTextfield: UITextField!
     @IBOutlet weak var findLocationButton: UIButton!
-    let textDelegate = TextFieldDelegate()
     
     var dataDto: RequestDto?
     
     //MARK: Window Actions
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationTextfield.delegate = textDelegate
-        mediaURLTextfield.delegate = textDelegate
+
+        locationTextfield.delegate = self
+        mediaURLTextfield.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,9 +31,9 @@ class PostLocationViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //MARK: Action Buttons
