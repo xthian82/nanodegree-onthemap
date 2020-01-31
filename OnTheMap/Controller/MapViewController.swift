@@ -13,23 +13,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
-    var locations: [StudentInformation] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.locations!
-    }
     var annotations = [MKPointAnnotation]()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: View Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.mapView.delegate = self
+        mapView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadLocations()
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func reloadMap() {
@@ -39,7 +35,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
-                self.reloadLocations()
+                LocationManager.shared.locations = locations
+                self.loadLocations()
             }
         }
     }
@@ -71,17 +68,12 @@ class MapViewController: UIViewController, MKMapViewDelegate {
 
     // MARK: Helper method
     func loadLocations() {
-        for location in locations {
+        mapView.removeAnnotations(annotations)
+        annotations.removeAll()
+        for location in LocationManager.shared.locations {
             annotations.append(getAnnotationFromInformation(location))
         }
-        self.mapView.addAnnotations(annotations)
-    }
-    
-    func reloadLocations() {
-        self.mapView.removeAnnotations(annotations)
-        annotations.removeAll()
-        (UIApplication.shared.delegate as! AppDelegate).locations = locations
-        loadLocations()
+        mapView.addAnnotations(annotations)
     }
     
     func getAnnotationFromInformation(_ studentLocation: StudentInformation) -> MKPointAnnotation {

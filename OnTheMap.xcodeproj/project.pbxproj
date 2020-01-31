@@ -54,6 +54,7 @@
 		C485BAB923E2631C00D5CF07 /* ValidatorsUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */; };
 		C485BABB23E2865800D5CF07 /* RequestDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BABA23E2865800D5CF07 /* RequestDto.swift */; };
 		C485BABD23E28E6800D5CF07 /* LoginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BABC23E28E6800D5CF07 /* LoginType.swift */; };
+		C485BAC623E3C76000D5CF07 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C485BAC523E3C76000D5CF07 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		C485BAB823E2631C00D5CF07 /* ValidatorsUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorsUtil.swift; sourceTree = "<group>"; };
 		C485BABA23E2865800D5CF07 /* RequestDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDto.swift; sourceTree = "<group>"; };
 		C485BABC23E28E6800D5CF07 /* LoginType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginType.swift; sourceTree = "<group>"; };
+		C485BAC523E3C76000D5CF07 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 				C47E136823DFF2930044EC42 /* Constants.swift */,
 				C47E136C23DFF7E40044EC42 /* Errors.swift */,
 				C485BABC23E28E6800D5CF07 /* LoginType.swift */,
+				C485BAC523E3C76000D5CF07 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				C47E136723DFDA6C0044EC42 /* ErrorResponse.swift in Sources */,
 				C47E133823DDDAD90044EC42 /* Guard.swift in Sources */,
 				C47E134323DDE4DB0044EC42 /* Membership.swift in Sources */,
+				C485BAC623E3C76000D5CF07 /* LocationManager.swift in Sources */,
 				C47E132E23DD62D60044EC42 /* SessionResponse.swift in Sources */,
 				C47E134623DDEC7F0044EC42 /* HttpUtil.swift in Sources */,
 				C47E133223DD63A80044EC42 /* Session.swift in Sources */,

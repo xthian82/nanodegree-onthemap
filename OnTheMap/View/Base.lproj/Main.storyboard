@@ -54,7 +54,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="PJg-U8-EY9"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
@@ -287,10 +286,15 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="et1-BF-hOH">
+                                <rect key="frame" x="188.5" y="547.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="et1-BF-hOH" firstAttribute="centerX" secondItem="MBn-OA-XXT" secondAttribute="centerX" id="3gE-BP-dCR"/>
                             <constraint firstItem="yUM-yZ-Os2" firstAttribute="bottom" secondItem="CuC-PJ-e9K" secondAttribute="top" constant="-12" id="3yf-cw-dUY"/>
+                            <constraint firstItem="et1-BF-hOH" firstAttribute="top" secondItem="eG7-vu-vvO" secondAttribute="bottom" constant="10" id="5ai-2Z-GeY"/>
                             <constraint firstItem="CuC-PJ-e9K" firstAttribute="trailing" secondItem="MBn-OA-XXT" secondAttribute="trailing" constant="-32" id="9wy-Xs-DSh"/>
                             <constraint firstItem="CuC-PJ-e9K" firstAttribute="centerY" secondItem="MBn-OA-XXT" secondAttribute="centerY" id="QOk-pl-XRV"/>
                             <constraint firstItem="yUM-yZ-Os2" firstAttribute="centerX" secondItem="MBn-OA-XXT" secondAttribute="centerX" id="bhb-p8-vFm"/>
@@ -306,6 +310,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicatoir" destination="et1-BF-hOH" id="iIo-EK-Azo"/>
                         <outlet property="findLocationButton" destination="eG7-vu-vvO" id="xrN-eo-qF2"/>
                         <outlet property="locationTextfield" destination="d7a-Om-Cmw" id="30j-1O-RDe"/>
                         <outlet property="mediaURLTextfield" destination="R8G-OL-a4p" id="NJh-k7-bSc"/>
@@ -314,7 +319,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bwi-yr-qqD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580" y="115"/>
+            <point key="canvasLocation" x="1579.7101449275362" y="114.50892857142857"/>
         </scene>
         <!--Add Location-->
         <scene sceneID="PzO-Mq-yFV">
@@ -344,9 +349,9 @@
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AVl-0H-p7K">
-                                <rect key="frame" x="178" y="447" width="60" height="60"/>
-                                <color key="tintColor" systemColor="systemFillColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="color" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="178" y="447" width="80" height="80"/>
+                                <color key="tintColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -464,6 +469,6 @@
         <image name="power" catalog="system" width="64" height="62"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Knx-LE-rhC"/>
+        <segue reference="T6b-5U-tno"/>
     </inferredMetricsTieBreakers>
 </document>

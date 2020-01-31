@@ -12,21 +12,12 @@ import UIKit
 class TableViewController: UITableViewController {
     
     //MARK: Properties
-    var locations: [StudentInformation] {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        return appDelegate.locations!
-    }
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     //MARK: Window functions
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+        tabBarController?.tabBar.isHidden = false
     }
     
     //MARK: Action Buttons
@@ -37,7 +28,7 @@ class TableViewController: UITableViewController {
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: "\(Errors.cannotLoadLocations) \(error)")
             } else {
-                (UIApplication.shared.delegate as! AppDelegate).locations = locations
+                LocationManager.shared.locations = locations
                 self.tableView!.reloadData()
             }
         }
@@ -53,12 +44,12 @@ class TableViewController: UITableViewController {
     
     //MARK: Table functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.locations.count
+        return LocationManager.shared.locations.count
     }
        
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.locationDetail)!
-        let locationDetail = self.locations[indexPath.row]
+        let locationDetail = LocationManager.shared.locations[indexPath.row]
            
         // Set the name and image
         cell.textLabel?.text = "\(locationDetail.firstName) \(locationDetail.lastName)"
@@ -68,7 +59,7 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let locationDetail = self.locations[indexPath.row]
+        let locationDetail = LocationManager.shared.locations[indexPath.row]
         let toOpen = "\(locationDetail.mediaURL)" as String
 
         UIApplication.shared.open(URL(string: toOpen)!, options: [:]) { (success) in

@@ -13,8 +13,6 @@ import FacebookLogin
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     //MARK: Properties
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
@@ -38,14 +36,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //MARK: Button Actions
     @IBAction func loginTapped(_ sender: UIButton) {
         // simple validation of required values
-        if self.emailTextField.text?.count == 0 || self.passwordTextField.text?.count == 0 {
+        if emailTextField.text?.count == 0 || passwordTextField.text?.count == 0 {
             ControllersUtil.showAlert(controller: self, title: Errors.mainTitle, message: Errors.requiredLoginFields)
             return
         }
         setLoggingIn(true)
-        appDelegate.loginType = .UDACITY
-        UdacityClient.login(username: self.emailTextField.text ?? "", password: self.passwordTextField.text ?? "",
-                    completion: self.handleUdacityLoginResponse(success:error:))
+        UdacityClient.login(username: emailTextField.text ?? "", password: passwordTextField.text ?? "",
+                    completion: handleUdacityLoginResponse(success:error:))
     }
     
     @IBAction func facebookLoginTapped() {
@@ -89,14 +86,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             return
         }
         setLoggingIn(false)
-        appDelegate.locations = locations
+        LocationManager.shared.locations = locations
         clearTextFields()
         self.performSegue(withIdentifier: Constants.loggedInSegue, sender: nil)
     }
     
     func handleFaceebookLoginResponse(result: LoginResult) {
-        self.setLoggingIn(false)
-        self.appDelegate.loginType = .FACEBOOK
+        setLoggingIn(false)
+        LocationManager.shared.loginType = .FACEBOOK
         //handle reponse
         switch result {
         case .cancelled:
@@ -117,10 +114,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             activityIndicator.stopAnimating()
         }
-        self.emailTextField.isEnabled = !loggingIn
-        self.passwordTextField.isEnabled = !loggingIn
-        self.loginButton.isEnabled = !loggingIn
-        self.loginFacebookButton.isEnabled = !loggingIn
+        emailTextField.isEnabled = !loggingIn
+        passwordTextField.isEnabled = !loggingIn
+        loginButton.isEnabled = !loggingIn
+        loginFacebookButton.isEnabled = !loggingIn
     }
     
     func clearTextFields() {

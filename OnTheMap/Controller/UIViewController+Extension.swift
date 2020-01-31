@@ -12,8 +12,8 @@ import FacebookLogin
 
 extension UIViewController {
     
-    private func handleLogout(type: LoginType, finish: @escaping (Error?) -> Void) {
-        switch type {
+    private func handleLogout(finish: @escaping (Error?) -> Void) {
+        switch LocationManager.shared.loginType {
         case .FACEBOOK:
             LoginManager().logOut()
             finish(nil)
@@ -23,10 +23,9 @@ extension UIViewController {
     }
     
     func logginOut(_ sender: UIBarButtonItem, activityIndicator: UIActivityIndicatorView) {
-        let loginType = (UIApplication.shared.delegate as! AppDelegate).loginType
         activityIndicator.startAnimating()
         
-        handleLogout(type: loginType) { (error) in
+        handleLogout() { (error) in
             activityIndicator.stopAnimating()
             if let error = error {
                 ControllersUtil.presentAlert(controller: self, title: Errors.mainTitle, message: error.localizedDescription)
